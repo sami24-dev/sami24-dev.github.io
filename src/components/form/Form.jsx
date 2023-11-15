@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {useState} from 'react';
 import look from '../../assets/form/cerrar.svg';
 import en from '../../assets/form/en.svg';
@@ -5,7 +6,7 @@ import google from '../../assets/form/Google-Logo.png';
 import apple from '../../assets/form/apple.svg';
 import FormInput from './FormInput';
 import {Link} from 'react-router-dom';
-
+import {register} from '../../firebase/app';
 function Form() {
 	const [form, setForm] = useState({
 		email: '',
@@ -13,8 +14,14 @@ function Form() {
 	});
 	const {email, password} = form;
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+		try {
+			const CredentialUser = await register(email, password);
+			console.log(CredentialUser);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	const handleChange = (e) => {
 		setForm({...form, [e.target.name]: e.target.value});
