@@ -1,4 +1,4 @@
-import Form from '../../components/form/Form';
+import {Outlet} from 'react-router-dom'
 
 function Login() {
 	return (
@@ -8,15 +8,15 @@ function Login() {
 					SHIFTBOOK
 				</h1>
 				<p className='text-2xl text-martinique-800 font-semibold'>
-					SHIFT te ayuda a compartir tu negocio y que puedan adquirir tu
-					producto o servivio sin largas filas y sin perdida de tiempo
+					SHIFT It helps you share your business and so that they can acquire
+					your product or service without long lines and without loss of time.
 				</p>
 			</section>
 			<section className='flex justify-center items-center w-1/2'>
-				<Form />
+				<Outlet />
 			</section>
 		</main>
-	);
+	)
 }
 
-export default Login;
+export default Login

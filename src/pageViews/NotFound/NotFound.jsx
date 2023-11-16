@@ -1,7 +1,9 @@
-import {Link} from 'react-router-dom';
-import Lun from '../../assets/NotFound/luna-llena.png';
-import Court from '../../assets/NotFound/Frame.svg';
+import {Link, useRouteError} from 'react-router-dom'
+import Lun from '../../assets/NotFound/luna-llena.png'
+import Court from '../../assets/NotFound/Frame.svg'
 function NotFound() {
+	const error = useRouteError()
+	const {data, statusText} = error
 	return (
 		<section className='w-full h-screen bg-gradient-to-t from-martinique-500 from-10% via-martinique-700 via-30% to-martinique-950 to-90% '>
 			<article className='h-2/3 relative flex'>
@@ -23,12 +25,13 @@ function NotFound() {
 					Back to Home
 				</Link>
 				<p className='mt-8 text-martinique-950 text-xl'>
-					<span className='text-martinique-50'>Oops!</span> This page went out
-					of space!
+					<span className='text-martinique-50'>Oops!</span>{' '}
+					<span>{statusText}</span>
 				</p>
+				<span>{data}</span>
 			</article>
 		</section>
-	);
+	)
 }
 
-export default NotFound;
+export default NotFound
