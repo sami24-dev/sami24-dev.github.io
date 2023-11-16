@@ -6,6 +6,7 @@ import apple from '../../../assets/form/apple.svg'
 import FormInput from './FormInput'
 import {Link} from 'react-router-dom'
 import {register} from '../../../firebase/app'
+import ButtonForm from './ButtonForm'
 function Form() {
 	const [form, setForm] = useState({
 		email: '',
@@ -34,33 +35,21 @@ function Form() {
 				<h1 className='my-5 text-2xl text-martinique-700'>
 					Create Your Acount
 				</h1>
-				<Link
-					to='/'
-					className='flex justify-center items-center gap-2 w-full bg-transparent rounded-md cursor-pointer text-martinique-700 border border-martinique-200 mb-5  hover:border-martinique-600'>
-					<img
-						className='w-6'
-						src={google}
-						alt='logo'
-					/>
-					<h3 className='my-2 pt-1 '>Sign up with Google</h3>
-				</Link>
-				<Link
-					to='/'
-					className='flex justify-center items-center gap-2 w-full bg-transparent rounded-md cursor-pointer text-martinique-700 border border-martinique-200 mb-2  hover:border-martinique-600'>
-					<img
-						className='w-6'
-						src={apple}
-						alt='logo'
-					/>
-					<h3 className='my-2 pt-1 '>Sign up with Apple</h3>
-				</Link>
+				<ButtonForm
+					icon={google}
+					content='Sign up with Google'
+				/>
+				<ButtonForm
+					icon={apple}
+					content='Sign up with Apple'
+				/>
 			</header>
 			<FormInput
 				type='email'
 				nameTag='email'
 				value={email}
 				eventTag={handleChange}
-				define='email'
+				nameId='email'
 				icon={en}
 				description='email'
 				placeholder='Your email'
@@ -70,7 +59,7 @@ function Form() {
 				nameTag='password'
 				value={password}
 				eventTag={handleChange}
-				define='password'
+				nameId='password'
 				icon={look}
 				description='password'
 				placeholder='Your password'

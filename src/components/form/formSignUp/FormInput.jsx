@@ -1,39 +1,52 @@
-/* eslint-disable react/prop-types */
-function FormInput(props) {
+import PropTypes from 'prop-types'
+
+function FormInput(inputProps) {
+	const {
+		nameId,
+		description,
+		type,
+		nameTag,
+		value,
+		placeholder,
+		eventTag,
+		icon
+	} = inputProps
 	return (
 		<div className='relative w-4/5 text-xl mt-5'>
 			<label
-				htmlFor={props.define}
+				htmlFor={nameId}
 				className='absolute -top-7 left-1 text-martinique-700 capitalize'>
-				{props.description}
+				{description}
 			</label>
 			<input
-				className='w-full h-10 rounded-md  outline-none text-base pl-2 border border-martinique-200 mb-2  hover:border-martinique-600 focus:border-martinique-600 '
-				type={props.type}
-				id={props.define}
-				name={props.nameTag}
-				value={props.value}
-				placeholder={props.placeholder}
+				className='w-full h-10 rounded-md  outline-none text-base pl-4 border border-martinique-200 mb-2  hover:border-martinique-600 focus:border-martinique-600 '
+				type={type}
+				id={nameId}
+				name={nameTag}
+				value={value}
+				placeholder={placeholder}
 				required
-				onChange={props.eventTag}
+				onChange={eventTag}
 			/>
 			<img
 				className='absolute top-2 right-2'
-				src={props.icon}
+				src={icon}
 				alt=''
 			/>
 		</div>
 	)
 }
-/* FormInput.prototype = {
-	define: PropTypes.string,
-	description: PropTypes.string,
-	type: PropTypes.string,
-	nameTag: PropTypes.string,
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	placeholder: PropTypes.string,
-	eventTag: PropTypes.func,
-	icon: PropTypes.string
-} */
+FormInput.propTypes = {
+	inputProps: PropTypes.shape({
+		nameId: PropTypes.string,
+		description: PropTypes.string,
+		type: PropTypes.string,
+		nameTag: PropTypes.string,
+		value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		placeholder: PropTypes.string,
+		eventTag: PropTypes.func,
+		icon: PropTypes.string
+	}).isRequired
+}
 
 export default FormInput

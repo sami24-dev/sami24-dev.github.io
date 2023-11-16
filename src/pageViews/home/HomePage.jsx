@@ -1,8 +1,11 @@
+import Sidebar from '../../components/sidebar/Sidebar'
+
 function HomePage() {
 	return (
-		<main>
-			<div>home</div>
-		</main>
+		<div className='flex w-full h-screen'>
+			<Sidebar />
+			<main></main>
+		</div>
 	)
 }
 

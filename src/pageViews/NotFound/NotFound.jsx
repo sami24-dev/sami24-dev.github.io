@@ -6,7 +6,7 @@ function NotFound() {
 	const {data, statusText} = error
 	return (
 		<section className='w-full h-screen bg-gradient-to-t from-martinique-500 from-10% via-martinique-700 via-30% to-martinique-950 to-90% '>
-			<article className='h-2/3 relative flex'>
+			<article className='h-2/3 relative flex justify-center items-center gap-48'>
 				<img
 					className='w-36 h-36 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
 					src={Lun}
@@ -17,6 +17,8 @@ function NotFound() {
 					src={Court}
 					alt=''
 				/>
+				<h4 className='text-12xl text-martinique-300 font-poppins mt-10'>4</h4>
+				<h4 className='text-12xl text-martinique-300 font-poppins mt-10'>4</h4>
 			</article>
 			<article className='h-1/3 text-center'>
 				<Link

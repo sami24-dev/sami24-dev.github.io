@@ -6,6 +6,7 @@ import apple from '../../../assets/form/apple.svg'
 import FormInput from '../formSignUp/FormInput'
 import {Link} from 'react-router-dom'
 import {login} from '../../../firebase/app'
+import ButtonForm from '../formSignUp/ButtonForm'
 
 function Form() {
 	const [form, setForm] = useState({
@@ -25,41 +26,30 @@ function Form() {
 		}
 	}
 	const handleChange = (e) => {
-		setForm({...form, [e.target.name]: e.target.value})
+		const {name, value} = e.target
+		setForm({...form, [name]: value})
 	}
 	return (
 		<form
 			className='flex justify-center items-center flex-col gap-3 w-96 min-h-max bg-martinique-50 shadow-lg rounded-md'
 			onSubmit={handleSubmit}>
 			<header className='w-4/5 text-center'>
-				<h1 className='my-5 text-2xl text-martinique-700'>Sign in</h1>
-				<Link
-					to='/'
-					className='flex justify-center items-center gap-2 w-full bg-transparent rounded-md cursor-pointer text-martinique-700 border border-martinique-200 mb-5  hover:border-martinique-600'>
-					<img
-						className='w-6'
-						src={google}
-						alt='logo'
-					/>
-					<h3 className='my-2 pt-1 '>Sign in with Google</h3>
-				</Link>
-				<Link
-					to='/'
-					className='flex justify-center items-center gap-2 w-full bg-transparent rounded-md cursor-pointer text-martinique-700 border border-martinique-200 mb-2  hover:border-martinique-600'>
-					<img
-						className='w-6'
-						src={apple}
-						alt='logo'
-					/>
-					<h3 className='my-2 pt-1 '>Sign in with Apple</h3>
-				</Link>
+				<h1 className='my-5 text-2xl text-dark900'>Sign in</h1>
+				<ButtonForm
+					icon={google}
+					content='Sign in with Google'
+				/>
+				<ButtonForm
+					icon={apple}
+					content='Sign in with Apple'
+				/>
 			</header>
 			<FormInput
 				type='email'
 				nameTag='email'
 				value={email}
 				eventTag={handleChange}
-				define='email'
+				nameId='email'
 				icon={en}
 				description='email'
 				placeholder='Your email'
@@ -69,7 +59,7 @@ function Form() {
 				nameTag='password'
 				value={password}
 				eventTag={handleChange}
-				define='password'
+				nameId='password'
 				icon={look}
 				description='password'
 				placeholder='Your password'

@@ -3,6 +3,14 @@ export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
+			fontSize: {
+				'10xl': '8rem', // Añade un tamaño de fuente personalizado '7xl'
+				'12xl': '10rem', // Añade otro tamaño de fuente personalizado '8xl'
+			  },
+			  fontFamily: {
+				JetBrains: ['JetBrains Mono', 'monospace'],
+				poppins: ['Poppins', 'sans-serif'],
+			  },
 			colors: {
 				martinique: {
 					50: '#f4f3fa',
@@ -16,7 +24,13 @@ export default {
 					800: '#5e4f84',
 					900: '#4f446b',
 					950: '#38304b'
-				}
+				},
+				dark: '#38304b',
+				dark900: '#4f446b',
+				dark700: '#745fa3',
+				light: '#f4f3fa',
+				light400: '#a9a1d8',
+				light500: '#9789cb',
 			},
 			width: {
 				19: '4.375rem',
@@ -26,7 +40,8 @@ export default {
 			},
 			height: {
 				13: '3.125rem',
-				19: '4.375rem'
+				19: '4.375rem',
+				150: '69.5rem'
 			},
 			left: {
 				'left-61': '60%'
