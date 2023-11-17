@@ -8,18 +8,16 @@ const userContext = createContext()
 
 // eslint-disable-next-line react/prop-types
 export function UserContextProvider({children}) {
-	 
 	const [user, setUser] = useState(false)
 
 	useEffect(() => {
 		const unSuscribe = onAuthStateChanged(auth, (user) => {
-			console.log(user)
 			setUser(user)
 		})
 		return unSuscribe
-	}, [])
+	}, [user])
 
+	if (user === false) return <p>Loading...</p>
 	return <userContext.Provider value={{user}}>{children}</userContext.Provider>
 }
-
-export const myUserContext = () => useContext(userContext)
+export const useUserContext = () => useContext(userContext)

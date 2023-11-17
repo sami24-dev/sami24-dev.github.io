@@ -5,6 +5,7 @@ import Login from '../pageViews/Login/Login'
 import Form from '../components/form/formSignUp/Form'
 import FormSignIn from '../components/form/formSignIn/FormSignIn'
 import HomePage from '../pageViews/home/HomePage'
+import Layaut from '../Layaut/layaut'
 export const router = createBrowserRouter([
 	{
 		path: '/',
@@ -13,17 +14,23 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				element: <Form />
+				element: <FormSignIn />
 			},
 			{
-				path: '/signin',
-				element: <FormSignIn />
+				path: '/signup',
+				element: <Form />
 			}
 		]
 	},
 	{
 		path: '/daskboard',
-		element: <HomePage />,
-		errorElement: <NotFound />
+		element: <Layaut />,
+		errorElement: <NotFound />,
+		children: [
+			{
+				index: true,
+				element: <HomePage />
+			}
+		]
 	}
 ])

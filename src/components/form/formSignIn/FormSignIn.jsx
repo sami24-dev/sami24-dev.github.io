@@ -1,12 +1,13 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 import google from '../../../assets/form/Google-Logo.png'
 import apple from '../../../assets/form/apple.svg'
 import FormInput from '../formSignUp/FormInput'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {login} from '../../../firebase/app'
 import ButtonForm from '../formSignUp/ButtonForm'
+import {useUserContext} from '../../../context/UserContext'
 
 function Form() {
 	const [form, setForm] = useState({
@@ -14,6 +15,14 @@ function Form() {
 		password: ''
 	})
 	const {email, password} = form
+	// navegar al home con el hook creado de context y el useNavigte si el usuario existe
+	const navigate = useNavigate()
+	const {user} = useUserContext()
+	useEffect(() => {
+		if (user) {
+			navigate('/daskboard')
+		}
+	}, [user])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -46,7 +55,7 @@ function Form() {
 			</header>
 			<FormInput
 				type='email'
-				nameTag='email'
+				name='email'
 				value={email}
 				eventTag={handleChange}
 				nameId='email'
@@ -56,7 +65,7 @@ function Form() {
 			/>
 			<FormInput
 				type='password'
-				nameTag='password'
+				name='password'
 				value={password}
 				eventTag={handleChange}
 				nameId='password'
@@ -73,7 +82,7 @@ function Form() {
 				<hr className='w-full mt-5' />
 				<Link
 					className='text-center text-xl text-martinique-700'
-					to='/'>
+					to='/signup'>
 					<h3 className='mt-2 mb-5'>Register</h3>
 				</Link>
 			</footer>
