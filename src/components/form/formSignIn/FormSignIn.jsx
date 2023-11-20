@@ -1,13 +1,18 @@
-import {useEffect, useState} from 'react'
+import {useState, useEffect} from 'react'
+// react-router-dom
+import {Link, useNavigate} from 'react-router-dom'
+// UserContex
+import {useUserContext} from '../../../context/UserContext'
+// image-SVG
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 import google from '../../../assets/form/Google-Logo.png'
 import apple from '../../../assets/form/apple.svg'
-import FormInput from '../formSignUp/FormInput'
-import {Link, useNavigate} from 'react-router-dom'
+// metodo-signInWithEmailAndPassword-firebase
 import {login} from '../../../firebase/app'
+// components
+import FormInput from '../formSignUp/FormInput'
 import ButtonForm from '../formSignUp/ButtonForm'
-import {useUserContext} from '../../../context/UserContext'
 
 function Form() {
 	const [form, setForm] = useState({
@@ -15,20 +20,21 @@ function Form() {
 		password: ''
 	})
 	const {email, password} = form
+
 	// navegar al home con el hook creado de context y el useNavigte si el usuario existe
 	const navigate = useNavigate()
 	const {user} = useUserContext()
 	useEffect(() => {
 		if (user) {
-			navigate('/daskboard')
+			navigate('/app')
 		}
 	}, [user])
-
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+
 		try {
+			// eslint-disable-next-line no-unused-vars
 			const CredentialUser = await login(email, password)
-			console.log(CredentialUser)
 		} catch (error) {
 			/* const {code, message} = error; */
 			console.log(error)
@@ -43,7 +49,7 @@ function Form() {
 			className='flex justify-center items-center flex-col gap-3 w-96 min-h-max bg-martinique-50 shadow-lg rounded-md'
 			onSubmit={handleSubmit}>
 			<header className='w-4/5 text-center'>
-				<h1 className='my-5 text-2xl text-dark900'>Sign in</h1>
+				<h3 className='my-5 text-2xl text-dark900 font-poppins'>Sign in</h3>
 				<ButtonForm
 					icon={google}
 					content='Sign in with Google'
@@ -63,6 +69,7 @@ function Form() {
 				description='email'
 				placeholder='Your email'
 			/>
+
 			<FormInput
 				type='password'
 				name='password'
@@ -75,15 +82,17 @@ function Form() {
 			/>
 			<footer className='w-4/5 '>
 				<button
-					className='w-full h-9 text-martinique-50 text-xl bg-martinique-950 rounded-md hover:martinique-700 active:martinique-700'
+					className='w-full h-9 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark'
 					type='submit'>
 					Sign In
 				</button>
 				<hr className='w-full mt-5' />
 				<Link
-					className='text-center text-xl text-martinique-700'
-					to='/signup'>
-					<h3 className='mt-2 mb-5'>Register</h3>
+					className='text-center'
+					to='/signUp'>
+					<h3 className='mt-2 mb-5 text-dark900 text-xl font-poppins'>
+						Register
+					</h3>
 				</Link>
 			</footer>
 		</form>

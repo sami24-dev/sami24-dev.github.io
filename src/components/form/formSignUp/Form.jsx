@@ -1,35 +1,40 @@
-import {useEffect, useState} from 'react'
+import {useState, useEffect} from 'react'
+// react-router-dom
+import {Link, useNavigate} from 'react-router-dom'
+// UserContex
+import {useUserContext} from '../../../context/UserContext'
+// metodo-createUserWidthEmailAndPassword-firebase
+import {register} from '../../../firebase/app'
+// image-SVG
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 import google from '../../../assets/form/Google-Logo.png'
 import apple from '../../../assets/form/apple.svg'
+// components
 import FormInput from './FormInput'
-import {Link, useNavigate} from 'react-router-dom'
-import {register} from '../../../firebase/app'
 import ButtonForm from './ButtonForm'
-import {useUserContext} from '../../../context/UserContext'
 function Form() {
 	const [form, setForm] = useState({
 		email: '',
 		password: ''
 	})
 	const {email, password} = form
+	// navegar al home con el hook creado de context y el useNavigte si el usuario existe
 	const navigate = useNavigate()
-	const {user} = useUserContext
+	const {user, setUser} = useUserContext()
 	useEffect(() => {
 		if (user) {
-			navigate('/daskboard')
+			navigate('/app')
 		}
 	}, [user])
-
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
+			// eslint-disable-next-line no-unused-vars
 			const CredentialUser = await register(email, password)
-			console.log(CredentialUser)
+			setUser(CredentialUser)
 		} catch (error) {
-			const {code, message} = error
-			console.log(code, message)
+			console.log(error)
 		}
 	}
 	const handleChange = (e) => {
@@ -41,9 +46,7 @@ function Form() {
 			className='flex justify-center items-center flex-col gap-3 w-96 min-h-max bg-martinique-50 shadow-lg rounded-md'
 			onSubmit={handleSubmit}>
 			<header className='w-4/5 text-center'>
-				<h1 className='my-5 text-2xl text-martinique-700'>
-					Create Your Acount
-				</h1>
+				<h3 className='my-5 text-2xl text-dark900'>Create Your Acount</h3>
 				<ButtonForm
 					icon={google}
 					content='Sign up with Google'
@@ -75,15 +78,15 @@ function Form() {
 			/>
 			<footer className='w-4/5 '>
 				<button
-					className='w-full h-9 text-martinique-50 text-xl bg-martinique-950 rounded-md hover:martinique-700 active:martinique-700'
+					className='w-full h-9 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark'
 					type='submit'>
 					Sign Up
 				</button>
 				<hr className='w-full mt-5' />
 				<Link
-					className='text-center text-xl text-martinique-700'
+					className='text-center '
 					to='/'>
-					<h3 className='mt-2 mb-5'>Login</h3>
+					<h3 className='mt-2 mb-5 text-xl text-dark900 font-poppins'>Login</h3>
 				</Link>
 			</footer>
 		</form>

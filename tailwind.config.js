@@ -4,33 +4,35 @@ export default {
 	theme: {
 		extend: {
 			fontSize: {
-				'10xl': '8rem', // Añade un tamaño de fuente personalizado '7xl'
-				'12xl': '10rem', // Añade otro tamaño de fuente personalizado '8xl'
+				'10xl': '8rem', 
+				'12xl': '10rem',
 			  },
 			  fontFamily: {
 				JetBrains: ['JetBrains Mono', 'monospace'],
 				poppins: ['Poppins', 'sans-serif'],
+				Custom:[ 'Eczar', 'serif', 'Oswald', 'sans-serif']
 			  },
 			colors: {
-				martinique: {
-					50: '#f4f3fa',
-					100: '#e8e8f7',
-					200: '#d7d6ef',
-					300: '#bfbce5',
-					400: '#a9a1d8',
-					500: '#9789cb',
-					600: '#8770bb',
-					700: '#745fa3',
-					800: '#5e4f84',
-					900: '#4f446b',
-					950: '#38304b'
+				'blue-zodiac': {
+					'50': '#eff8ff',
+					'100': '#dbeefe',
+					'200': '#bfe3fe',
+					'300': '#93d2fd',
+					'400': '#60b8fa',
+					'500': '#3b99f6',
+					'600': '#247cec',
+					'700': '#1d65d8',
+					'800': '#1e52af',
+					'900': '#1e478a',
+					'950': '#132546',
 				},
-				dark: '#38304b',
-				dark900: '#4f446b',
-				dark700: '#745fa3',
+				dark: '#132546',
+				dark900: '#1e478a',
+				dark800: '#1e52af',
 				light: '#f4f3fa',
-				light400: '#a9a1d8',
-				light500: '#9789cb',
+				light100: '#dbeefe',
+				light400: '#60b8fa',
+				light500: '#3b99f6',
 			},
 			width: {
 				19: '4.375rem',

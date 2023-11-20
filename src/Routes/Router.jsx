@@ -1,15 +1,16 @@
 import {createBrowserRouter} from 'react-router-dom'
 // pages
 import NotFound from '../pageViews/NotFound/NotFound'
-import Login from '../pageViews/Login/Login'
+import LayoutLogin from '../Layaut/LayoutLogin'
 import Form from '../components/form/formSignUp/Form'
 import FormSignIn from '../components/form/formSignIn/FormSignIn'
-import HomePage from '../pageViews/home/HomePage'
-import Layaut from '../Layaut/layaut'
+import LayoutApp from '../Layaut/LayoutApp'
+import Messages from '../pageViews/Messages/Messages'
+import Profile from '../pageViews/Profile/Profile'
 export const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Login />,
+		element: <LayoutLogin />,
 		errorElement: <NotFound />,
 		children: [
 			{
@@ -17,19 +18,23 @@ export const router = createBrowserRouter([
 				element: <FormSignIn />
 			},
 			{
-				path: '/signup',
+				path: '/signUp',
 				element: <Form />
 			}
 		]
 	},
 	{
-		path: '/daskboard',
-		element: <Layaut />,
+		path: '/app',
+		element: <LayoutApp />,
 		errorElement: <NotFound />,
 		children: [
 			{
 				index: true,
-				element: <HomePage />
+				element: <Profile />
+			},
+			{
+				path: 'messages',
+				element: <Messages />
 			}
 		]
 	}
