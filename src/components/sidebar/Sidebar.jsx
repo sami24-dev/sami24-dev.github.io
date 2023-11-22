@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unknown-property */
-import {Link} from 'react-router-dom'
-import {logout} from '../../firebase/app'
-import LinkSidebar from './LinkSidebar'
-import Publications from './iconComponent/Publications'
-import IconHome from './iconComponent/IconHome'
-import IconChat from './iconComponent/IconChat'
-import IconStore from './iconComponent/IconStore'
-import IconFriends from './iconComponent/IconFriends'
-import IconSettings from './iconComponent/IconSettings'
+import { Link } from 'react-router-dom'
 import Avatar from '../../assets/avatar.png'
+import { logout } from '../../firebase/app'
+import LinkSidebar from './LinkSidebar'
+import IconChat from './iconComponent/IconChat'
+import IconFriends from './iconComponent/IconFriends'
+import IconHome from './iconComponent/IconHome'
+import IconSettings from './iconComponent/IconSettings'
+import IconStore from './iconComponent/IconStore'
+import Publications from './iconComponent/Publications'
 function Sidebar() {
 	const handleLogaut = async () => {
 		try {
@@ -18,18 +18,18 @@ function Sidebar() {
 		}
 	}
 	return (
-		<nav className='sticky top-0 w-screen h-14 md:left-0 md:h-screen md:w-64 border-r border-light100 dark:border-none dark:bg-dark text-white flex md:flex-col justify-between'>
-			<div className='flex items-center justify-start pt-6 px-6'>
+		<nav className='sticky top-0 w-full h-14 md:left-0 md:h-screen md:w-64 dark:bg-customBgDark text-white flex md:flex-col justify-between'>
+			<article className='flex items-center justify-center px-4 md:pt-6 md:px-6'>
 				<img
 					alt='Avatar'
-					className='rounded-full bg-dark'
-					height={40}
+					className='rounded-full md:w-13 md:h-13 bg-dark'
+					height='40'
 					src={Avatar}
 					style={{
 						aspectRatio: '40/40',
 						objectFit: 'cover'
 					}}
-					width={40}
+					width='40'
 				/>
 				<section className='ml-4 md:block hidden'>
 					<article>
@@ -47,7 +47,7 @@ function Sidebar() {
 						<span className='text-zinc-500 dark:text-zinc-400'>followers</span>
 					</article>
 				</section>
-			</div>
+			</article>
 
 			<ul className='flex md:flex-col justify-between overflow-x-auto'>
 				<li>

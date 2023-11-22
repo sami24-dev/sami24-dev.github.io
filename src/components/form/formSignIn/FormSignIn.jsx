@@ -1,18 +1,18 @@
-import {useState, useEffect} from 'react'
+import { useEffect, useState } from 'react'
 // react-router-dom
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // UserContex
-import {useUserContext} from '../../../context/UserContext'
+import { useUserContext } from '../../../context/UserContext'
 // image-SVG
-import look from '../../../assets/form/cerrar.svg'
-import en from '../../../assets/form/en.svg'
 import google from '../../../assets/form/Google-Logo.png'
 import apple from '../../../assets/form/apple.svg'
+import look from '../../../assets/form/cerrar.svg'
+import en from '../../../assets/form/en.svg'
 // metodo-signInWithEmailAndPassword-firebase
-import {login} from '../../../firebase/app'
+import { login } from '../../../firebase/app'
 // components
-import FormInput from '../formSignUp/FormInput'
 import ButtonForm from '../formSignUp/ButtonForm'
+import FormInput from '../formSignUp/FormInput'
 
 function Form() {
 	const [form, setForm] = useState({
@@ -46,10 +46,10 @@ function Form() {
 	}
 	return (
 		<form
-			className='flex justify-center items-center flex-col gap-3 w-96 min-h-max bg-martinique-50 shadow-lg rounded-md'
+			className='flex justify-center items-center rounded-md flex-col gap-3 w-96 min-h-max shadow-xl dark:shadow-customShadowLight'
 			onSubmit={handleSubmit}>
 			<header className='w-4/5 text-center'>
-				<h3 className='my-5 text-2xl text-dark900 font-poppins'>Sign in</h3>
+				<h3 className='my-5 text-2xl text-dark900 font-poppins dark:text-customTextLight'>Sign in</h3>
 				<ButtonForm
 					icon={google}
 					content='Sign in with Google'
@@ -82,7 +82,7 @@ function Form() {
 			/>
 			<footer className='w-4/5 '>
 				<button
-					className='w-full h-9 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark'
+					className='w-full h-9 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'
 					type='submit'>
 					Sign In
 				</button>
@@ -90,7 +90,7 @@ function Form() {
 				<Link
 					className='text-center'
 					to='/signUp'>
-					<h3 className='mt-2 mb-5 text-dark900 text-xl font-poppins'>
+					<h3 className='mt-2 mb-5 text-dark900 text-xl font-poppins dark:text-customTextLight'>
 						Register
 					</h3>
 				</Link>

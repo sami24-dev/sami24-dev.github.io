@@ -4,27 +4,27 @@ export default {
 	theme: {
 		extend: {
 			fontSize: {
-				'10xl': '8rem', 
-				'12xl': '10rem',
-			  },
-			  fontFamily: {
+				'10xl': '8rem',
+				'12xl': '10rem'
+			},
+			fontFamily: {
 				JetBrains: ['JetBrains Mono', 'monospace'],
 				poppins: ['Poppins', 'sans-serif'],
-				Custom:[ 'Eczar', 'serif', 'Oswald', 'sans-serif']
-			  },
+				Custom: ['Eczar', 'serif', 'Oswald', 'sans-serif']
+			},
 			colors: {
 				'blue-zodiac': {
-					'50': '#eff8ff',
-					'100': '#dbeefe',
-					'200': '#bfe3fe',
-					'300': '#93d2fd',
-					'400': '#60b8fa',
-					'500': '#3b99f6',
-					'600': '#247cec',
-					'700': '#1d65d8',
-					'800': '#1e52af',
-					'900': '#1e478a',
-					'950': '#132546',
+					50: '#eff8ff',
+					100: '#dbeefe',
+					200: '#bfe3fe',
+					300: '#93d2fd',
+					400: '#60b8fa',
+					500: '#3b99f6',
+					600: '#247cec',
+					700: '#1d65d8',
+					800: '#1e52af',
+					900: '#1e478a',
+					950: '#132546'
 				},
 				dark: '#132546',
 				dark900: '#1e478a',
@@ -33,6 +33,14 @@ export default {
 				light100: '#dbeefe',
 				light400: '#60b8fa',
 				light500: '#3b99f6',
+				customTextLight: '#eff8ff',
+				customTextDark: '#1e478a',
+				customBorderLight:'#eff8ff',
+				customBorderDark: '#3b99f6',
+				customBgLight: '#222436',
+				customBgDark: '#1e2030',
+				customShadowLight: '#222436',
+				customShadowDark: '#1e2030',
 			},
 			width: {
 				19: '4.375rem',
@@ -50,5 +58,8 @@ export default {
 			}
 		}
 	},
-	plugins: []
+	plugins: [
+		require('tailwindcss'),
+    	require('autoprefixer'),
+	]
 }

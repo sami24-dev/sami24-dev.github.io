@@ -16,11 +16,11 @@ function FormInput(inputProps) {
 		<div className='relative w-4/5 text-xl mt-5'>
 			<label
 				htmlFor={nameId}
-				className='absolute -top-7 left-1 text-dark900 font-poppins capitalize'>
+				className='absolute -top-7 left-1  font-poppins capitalize dark:text-customTextLight'>
 				{description}
 			</label>
 			<input
-				className='w-full h-10 pl-4 mb-2 text-base text-dark900 font-poppins rounded-md outline-none border border-martinique-200 transition-color duration-500 ease-in-out hover:border-martinique-600 focus:border-martinique-600 '
+				className='appearance-none w-full h-10 pl-4 mb-2 text-base text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
 				type={type}
 				id={nameId}
 				name={name}
