@@ -6,7 +6,7 @@ import {useEffect, useState} from 'react'
 import User from '../../assets/usuario.png'
 // funciones de app firebase
 
-import {setUser, uploadFile} from '../../firebase/app'
+import {setUserDb, uploadFile} from '../../firebase/app'
 // react router dom
 import {useNavigate} from 'react-router-dom'
 function ConfigUser() {
@@ -17,26 +17,27 @@ function ConfigUser() {
 		photo: '',
 		profession: ''
 	})
-	// destructuracion
-	const {firstName, lastName, photo, profession} = userData
-
 	const [avatar, setAvatar] = useState({
 		previewAvatar: User,
 		uploadAvatar: '',
 		typeAvatar: ''
 	})
-
-	const {previewAvatar, uploadAvatar, typeAvatar} = avatar
-
 	const [complete, setComplete] = useState({
 		result: null
 	})
+	// destructuracion
+	const {firstName, lastName, photo, profession} = userData
+	const {previewAvatar, uploadAvatar, typeAvatar} = avatar
 	const {result} = complete
 	const {user} = useUserContext()
-
 	const {uid, email} = user
 
 	const navigate = useNavigate()
+
+	const handleChange = (e) => {
+		const {name, value} = e.target
+		setUserData({...userData, [name]: value})
+	}
 
 	const handleAvatar = (e) => {
 		const file = e.target.files[0]
@@ -55,20 +56,24 @@ function ConfigUser() {
 			reader.readAsDataURL(file)
 		}
 	}
+	const fectchData = async () => {
+		try {
+			const results = await uploadFile(uploadAvatar, uid, typeAvatar)
+			setUserData({...userData, photo: results})
+			console.log(userData)
+		} catch (error) {
+			console.log(error)
+		}
+	}
 	useEffect(() => {
 		if (avatar) {
-			try {
-				const results = uploadFile(uploadAvatar, uid, typeAvatar)
-				setUserData({...userData, photo: results})
-			} catch (error) {
-				console.log(error)
-			}
+			fectchData()
 		}
 	}, [avatar])
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const res = await setUser(
+			const res = await setUserDb(
 				email,
 				lastName,
 				firstName,
@@ -78,19 +83,16 @@ function ConfigUser() {
 			)
 			setComplete({...complete, result: res})
 		} catch (error) {
-			console.log(error)
+			console.log(error.code)
 		}
 	}
 
-	const handleChange = (e) => {
-		const {name, value} = e.target
-		setUserData({...userData, [name]: value})
-	}
 	useEffect(() => {
 		if (result === undefined) {
 			navigate('/app')
 		}
 	}, [result])
+
 	return (
 		<section className='flex justify-center items-center w-full h-screen'>
 			<article className='w-[50%] min-h-[50%] rounded-md shadow-lg p-5'>

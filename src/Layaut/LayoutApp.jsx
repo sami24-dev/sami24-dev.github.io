@@ -1,9 +1,10 @@
-import {Outlet, Navigate} from 'react-router-dom'
-import {useUserContext} from '../context/UserContext'
+import {Navigate, Outlet} from 'react-router-dom'
 import Sidebar from '../components/sidebar/Sidebar'
+import {useUserContext} from '../context/UserContext'
 
 function LayoutApp() {
 	const {user} = useUserContext()
+
 	return (
 		<>
 			<Sidebar />

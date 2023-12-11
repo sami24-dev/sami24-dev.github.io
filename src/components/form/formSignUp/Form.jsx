@@ -10,6 +10,7 @@ import google from '../../../assets/form/Google-Logo.png'
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 // components
+import {Toaster, toast} from 'sonner'
 import ButtonForm from './ButtonForm'
 import FormInput from './FormInput'
 function Form() {
@@ -26,18 +27,34 @@ function Form() {
 			navigate('/configUser')
 		}
 	}, [user])
+	const isValidEmail = (email) => {
+		// Puedes utilizar una expresión regular o alguna otra lógica para validar el correo electrónico
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+		return emailRegex.test(email)
+	}
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		if (!isValidEmail(email)) {
+			toast.error('Correo electrónico no válido')
+			return
+		}
+
+		if (password.length < 6) {
+			toast.error('La contraseña debe tener al menos 6 caracteres')
+			return
+		}
 		try {
 			const CredentialUser = await register(email, password)
 			setUser(CredentialUser)
 		} catch (error) {
-			console.log(error)
+			if (error.code === 'auth/email-already-in-use') {
+				toast.warning('El usuario ya existe')
+			}
 		}
 	}
 	const handleChange = (e) => {
 		const {name, value} = e.target
-		setForm({...form, [name]: value})
+		setForm({...form, [name]: value.trim()})
 	}
 	return (
 		<form
@@ -87,6 +104,10 @@ function Form() {
 					</h3>
 				</Link>
 			</footer>
+			<Toaster
+				richColors
+				position='bottom-right'
+			/>
 		</form>
 	)
 }

@@ -10,6 +10,7 @@ import en from '../../../assets/form/en.svg'
 // metodo-signInWithEmailAndPassword-firebase
 import {login} from '../../../firebase/app'
 // components
+import {Toaster, toast} from 'sonner'
 import ButtonForm from '../formSignUp/ButtonForm'
 import FormInput from '../formSignUp/FormInput'
 
@@ -20,7 +21,7 @@ function Form() {
 	})
 	const {email, password} = form
 
-	// navegar al home con el hook creado de context y el useNavigte si el usuario existe
+	// navegar al home con el hook creado de context si el usuario existe
 	const navigate = useNavigate()
 	const {user} = useUserContext()
 	useEffect(() => {
@@ -28,20 +29,35 @@ function Form() {
 			navigate('/app')
 		}
 	}, [user])
+	const isValidEmail = (email) => {
+		// Puedes utilizar una expresión regular o alguna otra lógica para validar el correo electrónico
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+		return emailRegex.test(email)
+	}
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		if (!isValidEmail(email)) {
+			toast.error('Correo electrónico no válido')
+			return
+		}
+
+		if (password.length < 6) {
+			toast.error('Contraseña no válida')
+			return
+		}
 
 		try {
 			// eslint-disable-next-line no-unused-vars
 			const CredentialUser = await login(email, password)
 		} catch (error) {
-			/* const {code, message} = error; */
-			console.log(error)
+			if (error.code === 'auth/invalid-login-credentials') {
+				toast.warning('Has ingresado correo o contraseña invalida')
+			}
 		}
 	}
 	const handleChange = (e) => {
 		const {name, value} = e.target
-		setForm({...form, [name]: value})
+		setForm({...form, [name]: value.trim()})
 	}
 	return (
 		<form
@@ -92,6 +108,10 @@ function Form() {
 					</h3>
 				</Link>
 			</footer>
+			<Toaster
+				richColors
+				position='bottom-right'
+			/>
 		</form>
 	)
 }
