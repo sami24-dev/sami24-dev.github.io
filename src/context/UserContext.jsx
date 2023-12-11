@@ -1,9 +1,9 @@
-import {useState, useContext, createContext, useEffect} from 'react'
+import {createContext, useContext, useEffect, useState} from 'react'
 
 // config firebase
 import {onAuthStateChanged} from 'firebase/auth'
-import {auth} from '../firebase/app'
 import {MutatingDots} from 'react-loader-spinner'
+import {auth} from '../firebase/app'
 const userContext = createContext()
 
 // eslint-disable-next-line react/prop-types

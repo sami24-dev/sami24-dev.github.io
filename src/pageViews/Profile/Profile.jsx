@@ -1,52 +1,17 @@
-import {Link} from 'react-router-dom'
-import Avatar from '../../assets/avatar.png'
+import Avatar from '../../components/Avatar/Avatar'
 export default function Component() {
 	return (
-		<main className='md:flex md:w-3/5 h-screen bg-customBgDark dark:bg-gray-900'>
+		<main className='md:flex md:w-full h-screen bg-customBgDark dark:bg-gray-900'>
 			<section className='w-full md:w-64 md:h-screen md:mx-1 bg-white dark:bg-customBgDark'>
 				<header className='w-full h-40 bg-dark relative'>
 					<img
 						src=''
 						alt=''
 					/>
-					<div className='absolute -bottom-1/2 left-5 md:left-1/2 md:-translate-x-1/2 -translate-y-1/2'>
-						<img
-							alt='Profile'
-							className='rounded-full bg-light'
-							height='100'
-							src={Avatar}
-							style={{
-								aspectRatio: '100/100',
-								objectFit: 'cover'
-							}}
-							width='100'
-						/>
-					</div>
 				</header>
-				<article>
-					<h2 className='mt-5 md:mt-14 text-center text-lg md:text-3xl text-dark font-poppins font-medium dark:text-light'>
-						Jack Parrows
-					</h2>
-					<p className='mt-2 text-center text-dark font-poppins dark:text-light'>
-						Short description about you
-					</p>
-				</article>
-				<footer className='flex justify-center items-center gap-4'>
-					<Link className='flex flex-col justify-center items-center '>
-						<span className='font-medium text-dark dark:text-light '>1.5k</span>
-						<span className='text-dark font-poppins dark:text-light md:hover:text-light500 hover:underline transition-color duration-300 ease-in-out'>
-							followers
-						</span>
-					</Link>
-					<Link className='flex flex-col justify-center items-center '>
-						<span className='font-medium text-dark dark:text-light '>500</span>
-						<span className='text-dark font-poppins dark:text-light md:hover:text-light500 hover:underline transition-color duration-300 ease-in-out'>
-							following
-						</span>
-					</Link>
-				</footer>
+				<Avatar />
 			</section>
-			<section className='flex flex-col flex-1 bg-white dark:bg-customBgDark'>
+			<section className='flex flex-col flex-1 md:max-w-4xl bg-white dark:bg-customBgDark'>
 				<header className='bg-white dark:bg-customBgLight relative'>
 					<h2 className='text-2xl pl-3 dark:text-customTextLight font-normal font-poppins'>
 						Publish

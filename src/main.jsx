@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {RouterProvider} from 'react-router-dom'
-import {UserContextProvider} from './context/UserContext'
 import {router} from './Routes/Router'
+import {UserContextProvider} from './context/UserContext'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

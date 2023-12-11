@@ -35,7 +35,7 @@ export default {
 				light500: '#3b99f6',
 				customTextLight: '#eff8ff',
 				customTextDark: '#1e478a',
-				customBorderLight:'#eff8ff',
+				customBorderLight:'#bfe3fe',
 				customBorderDark: '#3b99f6',
 				customBgLight: '#222436',
 				customBgDark: '#1e2030',

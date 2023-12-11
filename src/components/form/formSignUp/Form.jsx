@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 // react-router-dom
-import { Link, useNavigate } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 // UserContex
-import { useUserContext } from '../../../context/UserContext'
+import {useUserContext} from '../../../context/UserContext'
 // metodo-createUserWidthEmailAndPassword-firebase
-import { register } from '../../../firebase/app'
+import {register} from '../../../firebase/app'
 // image-SVG
 import google from '../../../assets/form/Google-Logo.png'
-import apple from '../../../assets/form/apple.svg'
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 // components
@@ -24,13 +23,12 @@ function Form() {
 	const {user, setUser} = useUserContext()
 	useEffect(() => {
 		if (user) {
-			navigate('/app')
+			navigate('/configUser')
 		}
 	}, [user])
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			// eslint-disable-next-line no-unused-vars
 			const CredentialUser = await register(email, password)
 			setUser(CredentialUser)
 		} catch (error) {
@@ -46,14 +44,12 @@ function Form() {
 			className='flex justify-center items-center flex-col gap-3 w-96 min-h-max rounded-md shadow-xl dark:shadow-customShadowLight'
 			onSubmit={handleSubmit}>
 			<header className='w-4/5 text-center'>
-				<h3 className='my-5 text-2xl text-dark900 dark:text-customTextLight'>Create Your Acount</h3>
+				<h3 className='my-5 text-2xl text-dark900 dark:text-customTextLight'>
+					Create Your Acount
+				</h3>
 				<ButtonForm
 					icon={google}
 					content='Sign up with Google'
-				/>
-				<ButtonForm
-					icon={apple}
-					content='Sign up with Apple'
 				/>
 			</header>
 			<FormInput
@@ -86,7 +82,9 @@ function Form() {
 				<Link
 					className='text-center '
 					to='/'>
-					<h3 className='mt-2 mb-5 text-xl text-dark900 font-poppins dark:text-customTextLight'>Login</h3>
+					<h3 className='mt-2 mb-5 text-xl text-dark900 font-poppins dark:text-customTextLight'>
+						Login
+					</h3>
 				</Link>
 			</footer>
 		</form>
