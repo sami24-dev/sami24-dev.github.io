@@ -6,18 +6,22 @@ import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app'
 
 export default function Component() {
-	const [publications, setPublications] = useState()
+	const [publications, setPublications] = useState('')
 	const {user} = useUserContext()
 	const {uid} = user
 	const fechtData = async () => {
 		try {
 			const q = query(collection(db, 'publications'), where('uid', '==', uid))
-
 			const querySnapshot = await getDocs(q)
+			let response = []
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
-				console.log(doc.data())
-				setPublications(doc.data())
+				response = {
+					id: doc.data().id,
+					descripcion: doc.data().descripcion,
+					foto: doc.data().foto
+				}
+				console.log(response)
 			})
 		} catch (error) {
 			console.log(error)
@@ -28,6 +32,7 @@ export default function Component() {
 			fechtData()
 		}
 	}, [publications])
+
 	console.log(publications)
 	return (
 		<main className='md:flex md:w-full h-screen bg-customBgDark dark:bg-gray-900'>
