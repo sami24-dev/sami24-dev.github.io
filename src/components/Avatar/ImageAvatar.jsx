@@ -1,5 +1,6 @@
 import {doc, getDoc} from 'firebase/firestore'
 import {useEffect, useState} from 'react'
+import User from '../../assets/usuario.png'
 import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app'
 
@@ -30,8 +31,8 @@ function ImageAvatar(image) {
 			<img
 				width='40'
 				height='40'
-				className='aspect-square object-cover rounded-full md:w-13 md:h-13 bg-dark'
-				src={data && data.fotoPerfil}
+				className='aspect-square object-cover border border-customBorderDark p-1 rounded-full md:w-13 md:h-13 bg-dark'
+				src={data ? data.fotoPerfil : User}
 			/>
 		</>
 	)

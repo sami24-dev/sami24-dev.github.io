@@ -33,7 +33,7 @@ function Avatar() {
 			<section className='ml-4 md:block hidden'>
 				<article>
 					<UserName />
-					<span className='block text-sm font-poppins text-dark800'>
+					<span className='block text-sm capitalize font-poppins text-dark800'>
 						{data && data.ocupacion}
 					</span>
 				</article>

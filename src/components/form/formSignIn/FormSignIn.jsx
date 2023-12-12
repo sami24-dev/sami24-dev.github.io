@@ -4,14 +4,12 @@ import {Link, useNavigate} from 'react-router-dom'
 // UserContex
 import {useUserContext} from '../../../context/UserContext'
 // image-SVG
-import google from '../../../assets/form/Google-Logo.png'
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 // metodo-signInWithEmailAndPassword-firebase
 import {login} from '../../../firebase/app'
 // components
 import {Toaster, toast} from 'sonner'
-import ButtonForm from '../formSignUp/ButtonForm'
 import FormInput from '../formSignUp/FormInput'
 
 function Form() {
@@ -61,16 +59,12 @@ function Form() {
 	}
 	return (
 		<form
-			className='flex justify-center items-center rounded-md flex-col gap-3 w-96 min-h-max shadow-xl dark:shadow-customShadowLight'
+			className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 md:min-h-max shadow-xl dark:shadow-customShadowLight'
 			onSubmit={handleSubmit}>
 			<header className='w-4/5 text-center'>
 				<h3 className='my-5 text-2xl text-dark900 font-poppins dark:text-customTextLight'>
 					Sign in
 				</h3>
-				<ButtonForm
-					icon={google}
-					content='Sign in with Google'
-				/>
 			</header>
 			<FormInput
 				type='email'

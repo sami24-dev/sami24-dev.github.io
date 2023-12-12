@@ -94,20 +94,20 @@ function ConfigUser() {
 	}, [result])
 
 	return (
-		<section className='flex justify-center items-center w-full h-screen'>
-			<article className='w-[50%] min-h-[50%] rounded-md shadow-lg p-5'>
+		<section className='flex justify-center items-center w-full h-auto dark:bg-customBgDark'>
+			<article className='flex justify-center items-center flex-col w-full h-full md:w-1/2 md:min-h-full rounded-md md:shadow-lg p-5'>
 				<header className='flex flex-col space-y-1.5 px-6 pt-6'>
-					<h3 className='tracking-tight text-lg font-medium font-poppins'>
+					<h3 className='tracking-tight text-lg text-center font-medium font-poppins dark:text-customTextLight'>
 						Profile Data Entry
 					</h3>
-					<p className='text-sm text-muted-foreground font-poppins'>
+					<p className='text-base text-muted-foreground text-center font-poppins dark:text-customTextLight'>
 						Fill in your information and press save to update your profile.
 					</p>
 				</header>
 				<form
-					className='p-6'
+					className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 p-2 md:mt-3 shadow-xl dark:shadow-customShadowLight'
 					onSubmit={handleSubmit}>
-					<div className='relative w-max text-xl mb-10'>
+					<div className='relative w-max text-xl mt-4 mb-10'>
 						<label
 							className='bg-transparent rounded-md'
 							htmlFor='userImg'>
@@ -132,7 +132,7 @@ function ConfigUser() {
 							FirstName
 						</label>
 						<input
-							className='appearance-none w-1/2 h-10 pl-4 mb-2 text-base text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark capitalize focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
+							className='appearance-none w-4/5 h-10 pl-4 mb-2 text-base text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark capitalize focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
 							type='text'
 							id='firstName'
 							name='firstName'
@@ -148,7 +148,7 @@ function ConfigUser() {
 							LastName
 						</label>
 						<input
-							className='appearance-none w-1/2 h-10 pl-4 mb-2 text-base text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
+							className='appearance-none w-4/5 h-10 pl-4 mb-2 text-base text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
 							type='text'
 							id='lastName'
 							name='lastName'
@@ -164,7 +164,7 @@ function ConfigUser() {
 							Profession
 						</label>
 						<input
-							className='appearance-none w-1/2 h-10 pl-4 mb-2 text-base text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
+							className='appearance-none w-4/5 h-10 pl-4 mb-2 text-base text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
 							type='text'
 							id='profession'
 							name='profession'
@@ -174,7 +174,7 @@ function ConfigUser() {
 						/>
 					</div>
 					<button
-						className='w-full h-9 mt-2 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'
+						className='w-full h-9 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'
 						type='submit'>
 						Save
 					</button>

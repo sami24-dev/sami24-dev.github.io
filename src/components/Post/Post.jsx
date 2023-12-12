@@ -73,13 +73,13 @@ function Post() {
 		}
 	}
 	return (
-		<header className='bg-white dark:bg-customBgLight relative overflow-auto'>
-			<h2 className='text-2xl pl-3 text-left dark:text-customTextLight font-normal font-poppins'>
+		<header className='bg-white dark:bg-customBgLight relative  '>
+			<h2 className='text-2xl pl-3 md:mt-2 text-left dark:text-customTextLight font-normal font-poppins'>
 				Publish
 			</h2>
 
 			<textarea
-				className='w-full h-12 p-3 rounded-md resize-none outline-none text-customTextDark font-poppins dark:bg-customBgLight dark:text-customTextLight'
+				className='w-full h-12 md:h-19 py-3 px-6 rounded-md resize-none outline-none text-customTextDark font-poppins dark:bg-customBgLight dark:text-customTextLight'
 				placeholder="What's on your mind?"
 				name='descriptions'
 				required
@@ -87,7 +87,7 @@ function Post() {
 				onChange={handleChange}
 			/>
 			<label
-				className='absolute top-11 right-3 cursor-pointer w-10 h-10 text-customTextDark dark:text-customTextLight'
+				className='absolute top-2 right-1 cursor-pointer w-10 h-10 text-customTextDark dark:text-customTextLight'
 				htmlFor='inputFiled'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -131,7 +131,7 @@ function Post() {
 			<button
 				onClick={handleSubmit}
 				className='w-full h-9 mt-2 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'>
-				Post
+				Publish
 			</button>
 		</header>
 	)

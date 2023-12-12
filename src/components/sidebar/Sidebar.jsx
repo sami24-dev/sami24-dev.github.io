@@ -19,7 +19,7 @@ function Sidebar() {
 		}
 	}
 	return (
-		<nav className='sticky top-0 w-full h-14 md:left-0 md:h-screen md:w-64 dark:bg-customBgDark text-white flex md:flex-col justify-between'>
+		<nav className='sticky z-50 top-0 w-full h-14 md:left-0 md:h-screen md:w-64 dark:bg-customBgDark text-white flex md:flex-col justify-between'>
 			<Avatar />
 			<ul className='flex md:flex-col justify-between overflow-x-auto'>
 				<LinkSidebar

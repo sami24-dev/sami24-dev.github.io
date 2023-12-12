@@ -26,7 +26,7 @@ function UserName(size) {
 		}
 	}, [data])
 	return (
-		<h6 className='block text-base text-dark900 whitespace-nowrap font-poppins font-normal'>
+		<h6 className='block text-base capitalize text-customTextDark dark:text-customTextLight whitespace-nowrap font-poppins font-normal'>
 			{data && data.nombre} <span>{data && data.apellido}</span>
 		</h6>
 	)

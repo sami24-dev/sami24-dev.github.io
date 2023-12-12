@@ -25,7 +25,7 @@ export default function Component() {
 		if (!publications) {
 			fechtData()
 		}
-	}, [publications])
+	}, [db])
 
 	console.log(publications)
 	return (
@@ -37,7 +37,15 @@ export default function Component() {
 						alt=''
 					/>
 				</header>
-				<Avatar />
+				<div className='hidden md:block'>
+					<Avatar />
+				</div>
+				<div className='md:hidden'>
+					<article className='flex items-center justify-center flex-col gap-2 h-24'>
+						<ImageAvatar />
+						<UserName />
+					</article>
+				</div>
 			</section>
 			<section className='flex flex-col flex-1 md:max-w-4xl bg-white dark:bg-customBgDark'>
 				<Post />
@@ -51,16 +59,16 @@ export default function Component() {
 								return (
 									<section
 										key={obj.id}
-										className='px-4 py-6 md:px-6 md:py-12 lg:py-16'>
+										className='px-4 py-6 md:px-6 md:py-12 lg:py-16 dark:bg-customBgDark'>
 										<article
-											className='border text-card-foreground max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'
+											className='text-card-foreground max-w-md mx-auto shadow-lg dark:shadow-sm rounded-md dark:shadow-customTextDark overflow-hidden md:max-w-2xl'
 											data-v0-t='card'>
 											<div className='md:flex'>
 												<header className='md:flex-shrink-0'>
 													<img
 														className='h-48 w-full md:aspect-square object-cover md:h-full md:w-48'
 														src={obj.foto}
-														alt='Post image'
+														alt='image'
 														width='500'
 														height='300'
 													/>
@@ -77,7 +85,7 @@ export default function Component() {
 														</div>
 													</div>
 													<div className='mt-2'>
-														<p className='mt-2 text-gray-500'>
+														<p className='mt-2 text-xl text-customTextDark dark:text-customTextLight'>
 															{obj.descripcion}
 														</p>
 													</div>
