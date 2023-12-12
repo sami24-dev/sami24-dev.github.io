@@ -62,13 +62,7 @@ function Post() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const res = await setUserPost(
-				descriptions,
-				photo,
-				uuidv4(),
-				uuidv4(),
-				uid
-			)
+			const res = await setUserPost(descriptions, photo, uuidv4(), uid)
 			console.log(res)
 			// setComplete({...complete, result: res})
 

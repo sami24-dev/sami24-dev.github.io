@@ -1,28 +1,22 @@
-import {collection, getDocs, query, where} from 'firebase/firestore'
+import {collection, getDocs} from 'firebase/firestore'
 import {useEffect, useState} from 'react'
 import Avatar from '../../components/Avatar/Avatar'
+import ImageAvatar from '../../components/Avatar/ImageAvatar'
+import UserName from '../../components/Avatar/UserName'
 import Post from '../../components/Post/Post'
 import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app'
 
 export default function Component() {
-	const [publications, setPublications] = useState('')
+	const [publications, setPublications] = useState()
 	const {user} = useUserContext()
 	const {uid} = user
 	const fechtData = async () => {
 		try {
-			const q = query(collection(db, 'publications'), where('uid', '==', uid))
-			const querySnapshot = await getDocs(q)
-			let response = []
-			querySnapshot.forEach((doc) => {
-				// doc.data() is never undefined for query doc snapshots
-				response = {
-					id: doc.data().id,
-					descripcion: doc.data().descripcion,
-					foto: doc.data().foto
-				}
-				console.log(response)
-			})
+			const q = collection(db, uid)
+			const date = await getDocs(q)
+			// console.log(date.docs.map((doc) =>{...doc.data(), id: doc.id}))
+			setPublications(date.docs.map((doc) => [{...doc.data(), id: doc.id}]))
 		} catch (error) {
 			console.log(error)
 		}
@@ -50,7 +44,47 @@ export default function Component() {
 				<h2 className='mt-8 pl-3 text-2xl font-poppins dark:text-customTextLight'>
 					Your Posts
 				</h2>
-				<div className='space-y-4 mt-4 overflow-auto'></div>
+				<div className='space-y-4 mt-4 overflow-auto'>
+					{publications.map((doc) => {
+						return (
+							<section
+								key={doc.id}
+								className='px-4 py-6 md:px-6 md:py-12 lg:py-16'>
+								<article
+									className='border text-card-foreground max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'
+									data-v0-t='card'>
+									<div className='md:flex'>
+										<header className='md:flex-shrink-0'>
+											<img
+												className='h-48 w-full object-cover md:h-full md:w-48'
+												src={doc.foto}
+												alt='Post image'
+												width='500'
+												height='300'
+												style={{aspectRatio: '500/300', objectFit: 'cover'}}
+											/>
+										</header>
+										<div className='p-8'>
+											<div className='flex items-center gap-3'>
+												<span className='relative flex shrink-0 overflow-hidden rounded-full h-9 w-9'>
+													<span className='flex h-full w-full items-center justify-center rounded-full bg-muted'>
+														<ImageAvatar />
+													</span>
+												</span>
+												<div className='grid gap-0.5 text-xs'>
+													<UserName />
+												</div>
+											</div>
+											<div className='mt-2'>
+												<p className='mt-2 text-gray-500'>{doc.descripcion}</p>
+											</div>
+										</div>
+									</div>
+								</article>
+							</section>
+						)
+					})}
+				</div>
 			</section>
 		</main>
 	)

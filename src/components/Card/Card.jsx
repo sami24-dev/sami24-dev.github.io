@@ -1,6 +1,3 @@
-import ImageAvatar from '../Avatar/ImageAvatar'
-import UserName from '../Avatar/UserName'
-
 function Card(photo, description) {
 	return (
 		<section className='px-4 py-6 md:px-6 md:py-12 lg:py-16'>
@@ -22,11 +19,11 @@ function Card(photo, description) {
 						<div className='flex items-center gap-3'>
 							<span className='relative flex shrink-0 overflow-hidden rounded-full h-9 w-9'>
 								<span className='flex h-full w-full items-center justify-center rounded-full bg-muted'>
-									<ImageAvatar />
+									{/* <ImageAvatar /> */}
 								</span>
 							</span>
 							<div className='grid gap-0.5 text-xs'>
-								<UserName />
+								{/* <UserName /> */}
 								{/* <div className='text-zinc-500 dark:text-zinc-400'>
 									20 minutes ago
 								</div> */}

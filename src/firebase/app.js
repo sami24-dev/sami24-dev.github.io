@@ -93,15 +93,15 @@ export const setUserDb = async (email, lastName, firstName, photo, profession, i
 	return response
 }
 
-export const setUserPost = async (descriptions, photo, uuid, id, uid) => {
+export const setUserPost = async (descriptions, photo, uuid, uid) => {
 
 	const dataDb = {
 		descripcion: descriptions.toString(),
 		foto: photo.toString(),
-		id: uuid.toString(),
+		uuid: uuid.toString(),
 		uid: uid.toString()
 	}
-	const response = await setDoc(doc(db, 'publications', id), dataDb)
+	const response = await setDoc(doc(db, uid, uuid), dataDb)
 	
 	return response
 }
