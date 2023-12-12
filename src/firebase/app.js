@@ -55,8 +55,19 @@ export const logout = () => {
 
 // funcion de storage subir imagen
  
- export const uploadFile = async (file, uid, type) => {
-	const storageRef = ref(storage, `${uid}/avatar/foto-perfil`)
+ export const uploadFile = async (file, uid, rute, type) => {
+	const storageRef = ref(storage, `${uid}/${rute}/foto-perfil`)
+	const message = file;
+	const metaData = {
+		contentType: type
+	  }; 
+	  await uploadBytes(storageRef, message, metaData)
+	  const reesponseUrl = await getDownloadURL(storageRef)
+	  return reesponseUrl	
+ }
+
+ export const uploadPost = async (file, uid, rute, type, id) => {
+	const storageRef = ref(storage, `${uid}/${rute}/${id}`)
 	const message = file;
 	const metaData = {
 		contentType: type
@@ -82,5 +93,17 @@ export const setUserDb = async (email, lastName, firstName, photo, profession, i
 	return response
 }
 
+export const setUserPost = async (descriptions, photo, uuid, id, uid) => {
+
+	const dataDb = {
+		descripcion: descriptions.toString(),
+		foto: photo.toString(),
+		id: uuid.toString(),
+		uid: uid.toString()
+	}
+	const response = await setDoc(doc(db, 'publications', id), dataDb)
+	
+	return response
+}
 
 

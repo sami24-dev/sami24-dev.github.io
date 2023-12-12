@@ -58,7 +58,7 @@ function ConfigUser() {
 	}
 	const fectchData = async () => {
 		try {
-			const results = await uploadFile(uploadAvatar, uid, typeAvatar)
+			const results = await uploadFile(uploadAvatar, uid, 'avatar', typeAvatar)
 			setUserData({...userData, photo: results})
 			console.log(userData)
 		} catch (error) {

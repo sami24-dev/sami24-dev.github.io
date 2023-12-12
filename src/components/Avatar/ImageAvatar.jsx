@@ -2,9 +2,8 @@ import {doc, getDoc} from 'firebase/firestore'
 import {useEffect, useState} from 'react'
 import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app'
-import ImageAvatar from './ImageAvatar'
-import UserName from './UserName'
-function Avatar() {
+
+function ImageAvatar(image) {
 	const [data, setData] = useState(null)
 	const {user} = useUserContext()
 	const fechtData = async () => {
@@ -26,25 +25,15 @@ function Avatar() {
 			fechtData()
 		}
 	}, [data])
-
 	return (
-		<article className='flex items-center justify-center px-4 md:pt-6 md:px-6'>
-			<ImageAvatar />
-			<section className='ml-4 md:block hidden'>
-				<article>
-					<UserName />
-					<span className='block text-sm font-poppins text-dark800'>
-						{data && data.ocupacion}
-					</span>
-				</article>
-				{/* <article className='flex items-center gap-1'>
-					<span className='font-medium text-zinc-500 dark:text-zinc-400'>
-						1.5k
-					</span>
-					<span className='text-zinc-500 dark:text-zinc-400'>followers</span>
-				</article> */}
-			</section>
-		</article>
+		<>
+			<img
+				width='40'
+				height='40'
+				className='aspect-square object-cover rounded-full md:w-13 md:h-13 bg-dark'
+				src={data && data.fotoPerfil}
+			/>
+		</>
 	)
 }
-export default Avatar
+export default ImageAvatar
