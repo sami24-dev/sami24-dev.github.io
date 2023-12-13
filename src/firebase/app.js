@@ -12,7 +12,7 @@ import {
 // funciones del storage
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 // funciones de las bases de datos 
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { deleteDoc, doc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
 
 
 
@@ -106,4 +106,19 @@ export const setUserPost = async (descriptions, photo, uuid, uid) => {
 	return response
 }
 
+// funcion para actualizar la base de datos
+export const udaptePost = async (descriptions, photo, uui, uuid) => {
+	const udapteRef = doc(db, uui, uuid);
 
+	await updateDoc(udapteRef, {
+	descripcion: descriptions.toString(),
+	foto: photo.toString(),
+});
+}
+
+// funcion para borrar
+
+export const deletePost = async (uui, uuid) => {
+	const document = doc(db, `${uui.uid}`, `${uuid}`)
+	await deleteDoc(document)
+}

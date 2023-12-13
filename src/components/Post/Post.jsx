@@ -73,13 +73,13 @@ function Post() {
 		}
 	}
 	return (
-		<header className='bg-white dark:bg-customBgLight relative  '>
+		<header className='bg-white dark:bg-customBgLight relative'>
 			<h2 className='text-2xl pl-3 md:mt-2 text-left dark:text-customTextLight font-normal font-poppins'>
 				Publish
 			</h2>
 
 			<textarea
-				className='w-full h-12 md:h-19 py-3 px-6 rounded-md resize-none outline-none text-customTextDark font-poppins dark:bg-customBgLight dark:text-customTextLight'
+				className='w-full h-12 md:h-19 py-3 px-6 whitespace-pre-line rounded-md resize-none outline-none text-customTextDark font-poppins dark:bg-customBgLight dark:text-customTextLight'
 				placeholder="What's on your mind?"
 				name='descriptions'
 				required
