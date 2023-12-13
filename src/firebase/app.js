@@ -18,13 +18,13 @@ import { deleteDoc, doc, getFirestore, setDoc, updateDoc } from "firebase/firest
 
 
 const firebaseConfig = {
-	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-	projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-	storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-	messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-	appId: import.meta.env.VITE_FIREBASE_APP_ID,
-}
+	apiKey: "AIzaSyDXuLfw5fhQeoYtulTNarhJbYgsaqx_8FU",
+	authDomain: "shiftnet-react-demo.firebaseapp.com",
+	projectId: "shiftnet-react-demo",
+	storageBucket: "shiftnet-react-demo.appspot.com",
+	messagingSenderId: "57825266095",
+	appId: "1:57825266095:web:3e506b14c8143a6484075a"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
