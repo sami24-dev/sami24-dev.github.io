@@ -24,6 +24,7 @@ export default function Component() {
 		if (!publications) {
 			fechtData()
 		}
+		fechtData()
 	}, [publications])
 	return (
 		<main className='md:flex md:w-full h-screen bg-customBgDark dark:bg-gray-900'>

@@ -60,7 +60,6 @@ function ConfigUser() {
 		try {
 			const results = await uploadFile(uploadAvatar, uid, 'avatar', typeAvatar)
 			setUserData({...userData, photo: results})
-			console.log(userData)
 		} catch (error) {
 			console.log(error)
 		}
@@ -107,7 +106,7 @@ function ConfigUser() {
 				<form
 					className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 p-2 md:mt-3 shadow-xl dark:shadow-customShadowLight'
 					onSubmit={handleSubmit}>
-					<div className='relative w-max text-xl mt-4 mb-10'>
+					<div className='flex flex-col justify-center items-center relative w-full text-xl mt-4 mb-10'>
 						<label
 							className='bg-transparent rounded-md'
 							htmlFor='userImg'>
@@ -124,6 +123,7 @@ function ConfigUser() {
 							id='userImg'
 							onChange={handleAvatar}
 						/>
+						<p>Enter your profile photo</p>
 					</div>
 					<div className='relative w-4/5 text-xl mt-5'>
 						<label
