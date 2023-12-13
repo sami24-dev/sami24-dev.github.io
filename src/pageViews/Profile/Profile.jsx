@@ -24,8 +24,8 @@ export default function Component() {
 		if (!publications) {
 			fechtData()
 		}
-		fechtData()
 	}, [publications])
+	console.log(publications)
 	return (
 		<main className='md:flex md:w-full h-screen bg-customBgDark dark:bg-gray-900'>
 			<Panel />
@@ -39,10 +39,12 @@ export default function Component() {
 						publications.map((subArray) =>
 							subArray.map((obj) => {
 								return (
-									<Card
-										Key={obj.id}
-										param={obj}
-									/>
+									<div key={obj.id}>
+										<Card
+											cons
+											param={obj}
+										/>
+									</div>
 								)
 							})
 						)}
