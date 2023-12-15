@@ -25,13 +25,11 @@ function ImageAvatar(image) {
 			fechtData()
 		}
 	}, [data])
-	console.log(data)
+
 	return (
 		<>
 			<img
-				width='40'
-				height='40'
-				className='aspect-square object-cover border shadow-md p-1 rounded-full md:w-13 md:h-13 bg-dark'
+				className='aspect-square object-cover bg-dark shadow-md p-1 rounded-full md:w-14 md:h-14'
 				src={
 					data === null
 						? IconAvatar

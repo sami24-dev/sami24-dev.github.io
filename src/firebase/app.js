@@ -69,14 +69,15 @@ export const logout = () => {
 	}
 }
 
- export const uploadPost = async (file, uid, rute, type, id) => {
-	const storageRef = ref(storage, `${uid}/${rute}/${id}`)
+ export const uploadPost = async (file, uid, type, id) => {
+	const storageRef = ref(storage, `${uid}/publications/${id}`)
 	const message = file;
 	const metaData = {
 		contentType: type
 	  }; 
 	  await uploadBytes(storageRef, message, metaData)
-	  return  await getDownloadURL(storageRef)
+	  const urlLink =  await getDownloadURL(storageRef)
+	  return urlLink
  }
 
 // funcion para agregar datos a la base de datos 

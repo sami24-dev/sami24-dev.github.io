@@ -20,7 +20,7 @@ const Modal = (date) => {
 	const {uid} = user
 	const [image, setImage] = useState({
 		previewImage: data.date.foto,
-		uploadImage: '',
+		uploadImage: false,
 		typeImage: ''
 	})
 
@@ -55,22 +55,17 @@ const Modal = (date) => {
 	}
 	const updateImage = async () => {
 		try {
-			const results = await uploadPost(
-				uploadImage,
-				uid,
-				'publications',
-				typeImage
-			)
+			const results = await uploadPost(uploadImage, uid, typeImage)
 			setPost({...post, updatePhoto: results})
 		} catch (error) {
 			console.log(error)
 		}
 	}
 	useEffect(() => {
-		if (image) {
+		if (uploadImage) {
 			updateImage()
 		}
-	}, [image])
+	}, [uploadImage])
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {

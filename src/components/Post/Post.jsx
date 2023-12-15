@@ -1,23 +1,31 @@
-import {useEffect, useState} from 'react'
-import {v4 as uuidv4} from 'uuid'
+// context user
 import {useUserContext} from '../../context/UserContext'
+// hook react
+import {useEffect, useState} from 'react'
+// funciones de firebase/app.js
 import {setUserPost, uploadPost} from '../../firebase/app'
+// biblioteca de uid unicos
+import {Toaster, toast} from 'sonner'
+import {v4 as uuidv4} from 'uuid'
 function Post() {
-	const {user} = useUserContext()
-	const {uid} = user
+	// estados
+	const [post, setPost] = useState({
+		descriptions: '',
+		urlLink: false
+	})
 	const [image, setImage] = useState({
 		previewImage: '',
-		uploadImage: '',
+		uploadImage: false,
 		typeImage: ''
 	})
 
-	const [post, setPost] = useState({
-		descriptions: '',
-		photo: ''
-	})
+	// destructuracion
+	const {user} = useUserContext()
+	const {uid} = user
+	const {descriptions, urlLink} = post
 	const {previewImage, uploadImage, typeImage} = image
-	const {descriptions, photo} = post
 
+	// funciones para detectar el cambio  en las entradas
 	const handleChange = (e) => {
 		const {name, value} = e.target
 		setPost({...post, [name]: value})
@@ -40,29 +48,33 @@ function Post() {
 			reader.readAsDataURL(file)
 		}
 	}
-	const fectchData = async () => {
+
+	// esta funcion sube la foto al servidor de firebase y me retorna la url de la foto
+	const uploadPhotoPost = async () => {
 		try {
-			const results = await uploadPost(
-				uploadImage,
-				uid,
-				'publications',
-				typeImage,
-				uuidv4()
-			)
-			setPost({...post, photo: results})
+			const results = await uploadPost(uploadImage, uid, typeImage, uuidv4())
+			setPost({...post, urlLink: results})
 		} catch (error) {
 			console.log(error)
 		}
 	}
+
 	useEffect(() => {
-		if (image) {
-			fectchData()
+		if (uploadImage) {
+			uploadPhotoPost()
 		}
-	}, [image])
+	}, [uploadImage])
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const res = await setUserPost(descriptions, photo, uuidv4(), uid)
+			if (descriptions === '' && urlLink === false) {
+				toast.warning(
+					'Ups que deseas publicar... Completa algunos de los campos'
+				)
+				return
+			}
+			const res = await setUserPost(descriptions, urlLink, uuidv4(), uid)
 			console.log(res)
 			// setComplete({...complete, result: res})
 
@@ -82,7 +94,6 @@ function Post() {
 				className='w-full h-12 md:h-19 py-3 px-6 whitespace-pre-line rounded-md resize-none outline-none text-customTextDark font-poppins dark:bg-customBgLight dark:text-customTextLight'
 				placeholder="What's on your mind?"
 				name='descriptions'
-				required
 				value={descriptions}
 				onChange={handleChange}
 			/>
@@ -133,6 +144,10 @@ function Post() {
 				className='w-full h-9 mt-2 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'>
 				Publish
 			</button>
+			<Toaster
+				richColors
+				position='bottom-right'
+			/>
 		</header>
 	)
 }

@@ -1,20 +1,20 @@
 // context user
 import {useUserContext} from '../../context/UserContext'
-// hook
+// hook react
 import {useEffect, useState} from 'react'
-// imagen
-import User from '../../assets/usuario.png'
 // funciones de app firebase
-
 import {setUserDb, uploadFile} from '../../firebase/app'
 // react router dom
 import {useNavigate} from 'react-router-dom'
+// biblioteca sonner
 import {Toaster, toast} from 'sonner'
+// imagen
+import User from '../../assets/usuario.png'
 function ConfigUser() {
 	// estados
 	const [avatar, setAvatar] = useState({
 		previewAvatar: User,
-		uploadAvatar: '',
+		uploadAvatar: false,
 		typeAvatar: ''
 	})
 	const [userData, setUserData] = useState({
@@ -27,17 +27,19 @@ function ConfigUser() {
 	// destructuracion
 	const {user} = useUserContext()
 	const {uid, email} = user
-	const {firstName, lastName, urlAvatar, profession} = userData
 	const {previewAvatar, uploadAvatar, typeAvatar} = avatar
+	const {firstName, lastName, urlAvatar, profession} = userData
 
+	// useNavigate react-router-dom
 	const navigate = useNavigate()
 
+	// funciones para detectar el cambio  en las entradas
 	const handleChange = (e) => {
 		const {name, value} = e.target
 		setUserData({...userData, [name]: value})
 	}
 
-	const handleChangeAvatar = async (e) => {
+	const handleChangeAvatar = (e) => {
 		const file = e.target.files[0]
 		const type = file.type
 		if (file && file.type.substring(0, 5) === 'image') {
@@ -54,6 +56,8 @@ function ConfigUser() {
 			reader.readAsDataURL(file)
 		}
 	}
+
+	// esta funcion sube la foto al servidor de firebase y me retorna la url de la foto
 	const UploadPhoto = async () => {
 		try {
 			const urlPhoto = await uploadFile(uploadAvatar, uid, typeAvatar)
@@ -62,21 +66,26 @@ function ConfigUser() {
 			console.log(error)
 		}
 	}
+
 	useEffect(() => {
-		if (uploadAvatar && uploadAvatar !== '') {
+		if (uploadAvatar) {
 			UploadPhoto()
 		}
 	}, [uploadAvatar])
-
+	console.log(urlAvatar)
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
 			await setUserDb(email, lastName, firstName, urlAvatar, profession, uid)
-			navigate('/app')
+			setTimeout(() => {
+				toast.success('Registro completado')
+			}, 1000)
 		} catch (error) {
 			console.log(error.code)
 		} finally {
-			toast.success('Registro completado')
+			setTimeout(() => {
+				navigate('/app')
+			}, 2000)
 		}
 	}
 
