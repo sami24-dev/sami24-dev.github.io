@@ -1,9 +1,8 @@
 import {doc, getDoc} from 'firebase/firestore'
 import {useEffect, useState} from 'react'
-import User from '../../assets/usuario.png'
+import IconAvatar from '../../assets/usuario.png'
 import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app'
-
 function ImageAvatar(image) {
 	const [data, setData] = useState(null)
 	const {user} = useUserContext()
@@ -22,17 +21,24 @@ function ImageAvatar(image) {
 		}
 	}
 	useEffect(() => {
-		if (!data) {
+		if (data == null) {
 			fechtData()
 		}
 	}, [data])
+	console.log(data)
 	return (
 		<>
 			<img
 				width='40'
 				height='40'
-				className='aspect-square object-cover border border-customBorderDark p-1 rounded-full md:w-13 md:h-13 bg-dark'
-				src={data ? data.fotoPerfil : User}
+				className='aspect-square object-cover border shadow-md p-1 rounded-full md:w-13 md:h-13 bg-dark'
+				src={
+					data === null
+						? IconAvatar
+						: data.fotoPerfil === ''
+						  ? IconAvatar
+						  : data.fotoPerfil
+				}
 			/>
 		</>
 	)

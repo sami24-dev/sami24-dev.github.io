@@ -9,28 +9,26 @@ import User from '../../assets/usuario.png'
 import {setUserDb, uploadFile} from '../../firebase/app'
 // react router dom
 import {useNavigate} from 'react-router-dom'
+import {Toaster, toast} from 'sonner'
 function ConfigUser() {
 	// estados
-	const [userData, setUserData] = useState({
-		firstName: '',
-		lastName: '',
-		photo: '',
-		profession: ''
-	})
 	const [avatar, setAvatar] = useState({
 		previewAvatar: User,
 		uploadAvatar: '',
 		typeAvatar: ''
 	})
-	const [complete, setComplete] = useState({
-		result: null
+	const [userData, setUserData] = useState({
+		urlAvatar: '',
+		firstName: '',
+		lastName: '',
+		profession: ''
 	})
+
 	// destructuracion
-	const {firstName, lastName, photo, profession} = userData
-	const {previewAvatar, uploadAvatar, typeAvatar} = avatar
-	const {result} = complete
 	const {user} = useUserContext()
 	const {uid, email} = user
+	const {firstName, lastName, urlAvatar, profession} = userData
+	const {previewAvatar, uploadAvatar, typeAvatar} = avatar
 
 	const navigate = useNavigate()
 
@@ -39,7 +37,7 @@ function ConfigUser() {
 		setUserData({...userData, [name]: value})
 	}
 
-	const handleAvatar = (e) => {
+	const handleChangeAvatar = async (e) => {
 		const file = e.target.files[0]
 		const type = file.type
 		if (file && file.type.substring(0, 5) === 'image') {
@@ -56,44 +54,34 @@ function ConfigUser() {
 			reader.readAsDataURL(file)
 		}
 	}
-	const fectchData = async () => {
+	const UploadPhoto = async () => {
 		try {
-			const results = await uploadFile(uploadAvatar, uid, 'avatar', typeAvatar)
-			setUserData({...userData, photo: results})
+			const urlPhoto = await uploadFile(uploadAvatar, uid, typeAvatar)
+			setUserData({...userData, urlAvatar: urlPhoto})
 		} catch (error) {
 			console.log(error)
 		}
 	}
 	useEffect(() => {
-		if (avatar) {
-			fectchData()
+		if (uploadAvatar && uploadAvatar !== '') {
+			UploadPhoto()
 		}
-	}, [avatar])
+	}, [uploadAvatar])
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			const res = await setUserDb(
-				email,
-				lastName,
-				firstName,
-				photo,
-				profession,
-				uid
-			)
-			setComplete({...complete, result: res})
+			await setUserDb(email, lastName, firstName, urlAvatar, profession, uid)
+			navigate('/app')
 		} catch (error) {
 			console.log(error.code)
+		} finally {
+			toast.success('Registro completado')
 		}
 	}
 
-	useEffect(() => {
-		if (result === undefined) {
-			navigate('/app')
-		}
-	}, [result])
-
 	return (
-		<section className='flex justify-center items-center w-full h-auto dark:bg-customBgDark'>
+		<section className='flex justify-center items-center w-full h-full dark:bg-customBgDark'>
 			<article className='flex justify-center items-center flex-col w-full h-full md:w-1/2 md:min-h-full rounded-md md:shadow-lg p-5'>
 				<header className='flex flex-col space-y-1.5 px-6 pt-6'>
 					<h3 className='tracking-tight text-lg text-center font-medium font-poppins dark:text-customTextLight'>
@@ -121,9 +109,11 @@ function ConfigUser() {
 							accept='image/*'
 							type='file'
 							id='userImg'
-							onChange={handleAvatar}
+							onChange={handleChangeAvatar}
 						/>
-						<p>Enter your profile photo</p>
+						<p className='mt-2 text-base text-muted-foreground text-center font-poppins dark:text-customTextLight'>
+							Enter your profile photo
+						</p>
 					</div>
 					<div className='relative w-4/5 text-xl mt-5'>
 						<label
@@ -179,6 +169,10 @@ function ConfigUser() {
 						Save
 					</button>
 				</form>
+				<Toaster
+					richColors
+					position='bottom-right'
+				/>
 			</article>
 		</section>
 	)

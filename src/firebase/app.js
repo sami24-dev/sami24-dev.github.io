@@ -55,16 +55,19 @@ export const logout = () => {
 
 // funcion de storage subir imagen
  
- export const uploadFile = async (file, uid, rute, type) => {
-	const storageRef = ref(storage, `${uid}/${rute}/foto-perfil`)
-	const message = file;
-	const metaData = {
-		contentType: type
-	  }; 
-	  await uploadBytes(storageRef, message, metaData)
-	  const reesponseUrl = await getDownloadURL(storageRef)
-	  return reesponseUrl	
- }
+ export const uploadFile = async (file, uid, type) => {
+	try {
+		const storageRef = ref(storage, `${uid}/avatar/Profile-photo`)
+		const message = file
+		const metaData = {
+			contentType: type
+		}
+		await uploadBytes(storageRef, message, metaData)
+		return await getDownloadURL(storageRef)
+	} catch (error) {
+		console.log(error)
+	}
+}
 
  export const uploadPost = async (file, uid, rute, type, id) => {
 	const storageRef = ref(storage, `${uid}/${rute}/${id}`)
@@ -73,8 +76,7 @@ export const logout = () => {
 		contentType: type
 	  }; 
 	  await uploadBytes(storageRef, message, metaData)
-	  const reesponseUrl = await getDownloadURL(storageRef)
-	  return reesponseUrl	
+	  return  await getDownloadURL(storageRef)
  }
 
 // funcion para agregar datos a la base de datos 

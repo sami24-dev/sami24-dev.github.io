@@ -25,7 +25,6 @@ export default function Component() {
 			fechtData()
 		}
 	}, [publications])
-	console.log(publications)
 	return (
 		<main className='md:flex md:w-full h-screen bg-customBgDark dark:bg-gray-900'>
 			<Panel />
