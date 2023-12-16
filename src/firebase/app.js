@@ -12,21 +12,21 @@ import {
 // funciones del storage
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 // funciones de las bases de datos 
-import { deleteDoc, doc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
 
-
-
+// Configuracion firebase
 
 const firebaseConfig = {
-	apiKey: "AIzaSyDXuLfw5fhQeoYtulTNarhJbYgsaqx_8FU",
-	authDomain: "shiftnet-react-demo.firebaseapp.com",
-	projectId: "shiftnet-react-demo",
-	storageBucket: "shiftnet-react-demo.appspot.com",
-	messagingSenderId: "57825266095",
-	appId: "1:57825266095:web:3e506b14c8143a6484075a"
+	apiKey: "AIzaSyBdz1dMXdH1sR2XbbvlF5A6a2WeEFqw7vo",
+	authDomain: "shiftnet-react-demo-be640.firebaseapp.com",
+	projectId: "shiftnet-react-demo-be640",
+	storageBucket: "shiftnet-react-demo-be640.appspot.com",
+	messagingSenderId: "1033368440879",
+	appId: "1:1033368440879:web:b4f84201122186a4acb6da"
   };
 
 // Initialize Firebase
+
 const app = initializeApp(firebaseConfig)
 
 
@@ -108,6 +108,18 @@ export const setUserPost = async (descriptions, photo, uuid, uid) => {
 	
 	return response
 }
+// funcion para consultar 
+
+export const getUserData = async (id) => {
+	try {
+		const docRef = doc(db, 'usuarios', id)
+		const docSnap = await getDoc(docRef)
+		return docSnap.data()
+		
+	} catch (error) {
+		console.log(error)
+	}
+} 
 
 // funcion para actualizar la base de datos
 export const udaptePost = async (descriptions, photo, uui, uuid) => {

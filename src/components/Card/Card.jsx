@@ -8,29 +8,29 @@ import LinkCard from '../LinkCard/LInkCard'
 import Modal from '../Modal/Modal'
 import TrashIcon from '../sidebar/iconComponent/TrashIcon'
 
-function Card(param) {
+function Card(param, state) {
 	const {user} = useUserContext()
 	// eslint-disable-next-line no-unused-vars
 	const [params, setParams] = useState(param)
-	// const Params = param
 	const deleteData = async (uui, uuid) => {
 		try {
 			const document = doc(db, `${uui.uid}`, `${uuid}`)
 			const respon = await deleteDoc(document)
 			console.log(respon)
+			setParams(state)
 		} catch (error) {
 			console.log(error)
 		}
 	}
 	return (
-		<section className='h-80 text-card-foreground max-w-md mx-auto shadow-lg dark:shadow-sm rounded-md dark:shadow-customBorderDark overflow-hidden md:max-w-2xl flex flex-col md:flex-row md:h-60 md:justify-between md:items-center relative dark:bg-gray-900'>
+		<>
 			<header className='relative flex justify-between flex-col w-full h-full'>
 				<div className='flex'>
 					<div className='flex flex-row-reverse md:flex-row absolute top-1 right-1 md:top-2 md:right-2'>
 						<LinkCard
 							svg={<TrashIcon />}
 							handleFunc={() => {
-								deleteData(user, params.Key)
+								deleteData(user, params.param.id)
 							}}
 						/>
 						<Modal date={params.param} />
@@ -57,7 +57,7 @@ function Card(param) {
 					height='300'
 				/>
 			</footer>
-		</section>
+		</>
 	)
 }
 export default Card

@@ -69,7 +69,12 @@ function ConfigUser() {
 
 	useEffect(() => {
 		if (uploadAvatar) {
-			UploadPhoto()
+			toast.promise(UploadPhoto, {
+				loading: 'Cargando la imagen. Por favor, espera...',
+				success: '¡La imagen se ha cargado con éxito!',
+				error:
+					'La conexión con el servidor se perdió durante la carga de la imagen. '
+			})
 		}
 	}, [uploadAvatar])
 	console.log(urlAvatar)
@@ -77,9 +82,7 @@ function ConfigUser() {
 		e.preventDefault()
 		try {
 			await setUserDb(email, lastName, firstName, urlAvatar, profession, uid)
-			setTimeout(() => {
-				toast.success('Registro completado')
-			}, 1000)
+			toast.success('Registro completado')
 		} catch (error) {
 			console.log(error.code)
 		} finally {
@@ -180,7 +183,8 @@ function ConfigUser() {
 				</form>
 				<Toaster
 					richColors
-					position='bottom-right'
+					position='top-center'
+					expand={true}
 				/>
 			</article>
 		</section>

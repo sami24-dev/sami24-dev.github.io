@@ -4,7 +4,7 @@ import UserName from '../Avatar/UserName'
 
 function Panel() {
 	return (
-		<section className='w-full md:w-64 md:h-screen md:mx-1 bg-white dark:bg-customBgDark'>
+		<article className='w-full md:w-64 md:h-screen md:mx-1 bg-customTextLight dark:bg-customBgDark'>
 			<header className='w-full h-40 bg-dark relative'>
 				<img
 					src=''
@@ -20,7 +20,7 @@ function Panel() {
 					<UserName />
 				</article>
 			</div>
-		</section>
+		</article>
 	)
 }
 export default Panel

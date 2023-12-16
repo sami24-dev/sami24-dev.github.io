@@ -9,7 +9,6 @@ function LayoutApp() {
 		<>
 			<Sidebar />
 			{user ? <Outlet /> : <Navigate to='/' />}
-			<aside className='md:block hidden'></aside>
 		</>
 	)
 }
