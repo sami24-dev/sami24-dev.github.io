@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 import {logout} from '../../firebase/app'
 import Avatar from '../Avatar/Avatar'
+import ImageAvatar from '../Avatar/ImageAvatar'
 import LinkSidebar from './LinkSidebar'
 import IconChat from './iconComponent/IconChat'
 import IconFriends from './iconComponent/IconFriends'
@@ -20,7 +21,12 @@ function Sidebar() {
 	}
 	return (
 		<nav className='sticky z-50 top-0 w-full h-14 md:left-0 md:h-screen md:w-64 bg-customTextLight dark:bg-customBgDark text-white flex md:flex-col justify-between'>
-			<Avatar />
+			<div className='hidden md:block'>
+				<Avatar />
+			</div>
+			<div className='block p-2 w-20 md:hidden'>
+				<ImageAvatar />
+			</div>
 			<ul className='flex md:flex-col justify-between overflow-x-auto'>
 				<LinkSidebar
 					svg={<IconHome />}

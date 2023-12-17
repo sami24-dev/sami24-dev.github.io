@@ -25,10 +25,10 @@ function Avatar() {
 	}, [response])
 
 	return (
-		<article className='flex items-center justify-center px-4 md:pt-6 md:px-6'>
+		<article className='flex flex-col items-center justify-center gap-1 px-4 md:pt-6 md:px-6'>
 			<ImageAvatar />
 			<section className='ml-4 md:block hidden'>
-				<article>
+				<article className='md:flex md:flex-col'>
 					<UserName datos={response} />
 					<span className='block text-sm capitalize font-poppins text-dark800'>
 						{userB && userB.ocupacion}
