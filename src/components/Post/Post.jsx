@@ -18,7 +18,7 @@ function Post(param) {
 		uploadImage: false,
 		typeImage: ''
 	})
-	const [active, setActive] = useState(false)
+
 	// destructuracion
 	const {open} = param
 	const {user} = useUserContext()
@@ -62,7 +62,12 @@ function Post(param) {
 
 	useEffect(() => {
 		if (uploadImage) {
-			uploadPhotoPost()
+			toast.promise(uploadPhotoPost, {
+				loading: 'Cargando la imagen. Por favor, espera...',
+				success: '¡La imagen se ha cargado con éxito!',
+				error:
+					'La conexión con el servidor se perdió durante la carga de la imagen. '
+			})
 		}
 	}, [uploadImage])
 
@@ -81,12 +86,12 @@ function Post(param) {
 
 			setImage('')
 			setPost({...post, descriptions: ''})
-			setActive(true)
+
+			open()
 		} catch (error) {
 			console.log(error)
 		}
 	}
-	open(active)
 	return (
 		<header className='bg-white dark:bg-customBgLight relative'>
 			<h2 className='text-2xl pl-3 md:mt-2 text-left dark:text-customTextLight font-normal font-poppins'>
@@ -149,7 +154,9 @@ function Post(param) {
 			</button>
 			<Toaster
 				richColors
-				position='bottom-right'
+				position='top-center'
+				expand={true}
+				closeButton={true}
 			/>
 		</header>
 	)

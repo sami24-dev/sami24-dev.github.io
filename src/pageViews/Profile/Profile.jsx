@@ -12,16 +12,11 @@ export default function Component() {
 	const {user} = useUserContext()
 	const {uid} = user
 
-	const handleChildrem = (active) => {
-		setState(active)
-	}
 	const fechtData = async () => {
 		try {
-			if (user && state) {
-				const q = collection(db, uid)
-				const date = await getDocs(q)
-				setPublications(date.docs.map((doc) => [{...doc.data(), id: doc.id}]))
-			}
+			const q = collection(db, uid)
+			const date = await getDocs(q)
+			setPublications(date.docs.map((doc) => [{...doc.data(), id: doc.id}]))
 		} catch (error) {
 			console.log(error)
 		}
@@ -35,11 +30,12 @@ export default function Component() {
 			}
 		}
 	}, [user, state])
+	console.log(publications)
 	return (
 		<main className='md:flex md:w-full h-screen bg-customBgDark dark:bg-gray-900'>
 			<Panel />
 			<section className='flex flex-col flex-1 md:max-w-4xl bg-white dark:bg-customBgDark overflow-y-auto'>
-				<Post open={handleChildrem} />
+				<Post open={fechtData} />
 				<h2 className='p-3 text-2xl font-poppins dark:text-customTextLight'>
 					Your Posts
 				</h2>
@@ -53,7 +49,7 @@ export default function Component() {
 										className='bg-white h-80 max-w-md mx-auto shadow-sm dark:shadow-sm rounded-md overflow-hidden md:max-w-2xl flex flex-col md:flex-row md:h-60 md:justify-between md:items-center relative dark:shadow-customBorderDark dark:bg-customBgDark'>
 										<Card
 											param={obj}
-											open={handleChildrem}
+											open={fechtData}
 										/>
 									</article>
 								)

@@ -1,6 +1,5 @@
 import {deleteDoc, doc} from 'firebase/firestore'
 import PropTypes from 'prop-types'
-import {useState} from 'react'
 import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app'
 import ImageAvatar from '../Avatar/ImageAvatar'
@@ -12,18 +11,17 @@ import TrashIcon from '../sidebar/iconComponent/TrashIcon'
 function Card(params) {
 	const {param, open} = params
 	const {user} = useUserContext()
-	const [active, setActive] = useState(false)
+
 	const deleteData = async (uui, uuid) => {
 		try {
 			const document = doc(db, `${uui.uid}`, `${uuid}`)
 			const respon = await deleteDoc(document)
 			console.log(respon)
-			setActive(true)
+			open()
 		} catch (error) {
 			console.log(error)
 		}
 	}
-	open(active)
 	return (
 		<>
 			<header className='relative flex justify-between flex-col w-full h-full'>
@@ -35,7 +33,10 @@ function Card(params) {
 								deleteData(user, param.id)
 							}}
 						/>
-						<Modal date={param} />
+						<Modal
+							date={param}
+							udapte={open}
+						/>
 					</div>
 					<div className='flex items-center gap-3 absolute md:top-2 md:left-2'>
 						<ImageAvatar />

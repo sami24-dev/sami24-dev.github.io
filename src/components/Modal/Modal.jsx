@@ -1,14 +1,16 @@
+import PropTypes from 'prop-types'
 import {useEffect, useState} from 'react'
+import {Toaster, toast} from 'sonner'
 import {useUserContext} from '../../context/UserContext'
 import {udaptePost, uploadPost} from '../../firebase/app'
 import LinkCard from '../LinkCard/LInkCard'
 import PencilIcon from '../sidebar/iconComponent/PencilIcon'
-
-const Modal = (date) => {
+const Modal = (props) => {
+	// eslint-disable-next-line react/prop-types
+	const {date, udapte} = props
 	const [modalIsOpen, setModalIsOpen] = useState(false)
 	// eslint-disable-next-line no-unused-vars
-	const [data, setData] = useState(date)
-	const key = data.date.uuid
+	const key = date.uuid
 	const openModal = () => {
 		setModalIsOpen(true)
 	}
@@ -19,14 +21,14 @@ const Modal = (date) => {
 	const {user} = useUserContext()
 	const {uid} = user
 	const [image, setImage] = useState({
-		previewImage: data.date.foto,
+		previewImage: date.foto,
 		uploadImage: false,
 		typeImage: ''
 	})
 
 	const [post, setPost] = useState({
-		updateDescriptions: data.date.descripcion,
-		updatePhoto: ''
+		updateDescriptions: date.descripcion,
+		updatePhoto: date.foto
 	})
 	const {previewImage, uploadImage, typeImage} = image
 	const {updateDescriptions, updatePhoto} = post
@@ -63,7 +65,12 @@ const Modal = (date) => {
 	}
 	useEffect(() => {
 		if (uploadImage) {
-			updateImage()
+			toast.promise(updateImage, {
+				loading: 'Cargando la imagen. Por favor, espera...',
+				success: '¡La imagen se ha cargado con éxito!',
+				error:
+					'La conexión con el servidor se perdió durante la carga de la imagen. '
+			})
 		}
 	}, [uploadImage])
 	const handleSubmit = async (e) => {
@@ -75,6 +82,7 @@ const Modal = (date) => {
 
 			setImage('')
 			setPost({...post, descriptions: ''})
+			udapte()
 			closeModal()
 		} catch (error) {
 			console.log(error)
@@ -165,10 +173,19 @@ const Modal = (date) => {
 							/>
 						</section>
 					</article>
+					<Toaster
+						richColors
+						position='top-right'
+						expand={true}
+						closeButton={true}
+					/>
 				</section>
 			)}
 		</div>
 	)
 }
-
+Modal.propTypes = {
+	date: PropTypes.object.isRequired,
+	udapte: PropTypes.func.isRequired
+}
 export default Modal
