@@ -7,7 +7,7 @@ import {setUserPost, uploadPost} from '../../firebase/app'
 // biblioteca de uid unicos
 import {Toaster, toast} from 'sonner'
 import {v4 as uuidv4} from 'uuid'
-function Post() {
+function Post(param) {
 	// estados
 	const [post, setPost] = useState({
 		descriptions: '',
@@ -18,8 +18,9 @@ function Post() {
 		uploadImage: false,
 		typeImage: ''
 	})
-
+	const [active, setActive] = useState(false)
 	// destructuracion
+	const {open} = param
 	const {user} = useUserContext()
 	const {uid} = user
 	const {descriptions, urlLink} = post
@@ -80,10 +81,12 @@ function Post() {
 
 			setImage('')
 			setPost({...post, descriptions: ''})
+			setActive(true)
 		} catch (error) {
 			console.log(error)
 		}
 	}
+	open(active)
 	return (
 		<header className='bg-white dark:bg-customBgLight relative'>
 			<h2 className='text-2xl pl-3 md:mt-2 text-left dark:text-customTextLight font-normal font-poppins'>

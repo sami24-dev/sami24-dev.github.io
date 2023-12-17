@@ -89,7 +89,7 @@ const Modal = (date) => {
 
 			{modalIsOpen && (
 				<section className='fixed z-50  top-0 left-0 w-full h-full flex items-center justify-center flex-col bg-black bg-opacity-50 '>
-					<article className='relative w-1/2 h-full overflow-auto bg-white p-8 rounded shadow-lg dark:bg-customBgDark'>
+					<article className='relative w-full  h-5/6 md:w-1/2 md:h-full overflow-auto bg-white p-8 rounded shadow-lg dark:bg-customBgDark'>
 						<div className='flex justify-end gap-2 absolute top-1 right-1'>
 							<button
 								onClick={closeModal}

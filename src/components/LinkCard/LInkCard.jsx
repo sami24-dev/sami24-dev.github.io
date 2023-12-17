@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
 
 export default function LinkCard(LinkProps) {
 	const {svg, handleFunc} = LinkProps
-
 	return (
 		<button
 			onClick={handleFunc}
@@ -12,7 +10,7 @@ export default function LinkCard(LinkProps) {
 		</button>
 	)
 }
-Link.propTypes = {
+LinkCard.propTypes = {
 	LinkProps: PropTypes.shape({
 		svg: PropTypes.element,
 		path: PropTypes.string,

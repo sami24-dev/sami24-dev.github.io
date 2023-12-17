@@ -1,18 +1,19 @@
 import iconAvatar from '../../assets/usuario.png'
+import {useUserContext} from '../../context/UserContext'
 
-function ImageAvatar(param) {
-	const params = param
+function ImageAvatar() {
+	const {userB} = useUserContext()
 
 	return (
 		<>
 			<img
-				className='aspect-square object-cover bg-dark shadow-md p-1 rounded-full md:w-14 md:h-14'
+				className='aspect-square object-cover bg-dark shadow-md p-1 rounded-full w-10 h-10 md:w-14 md:h-14'
 				src={
-					params === null
+					userB === undefined
 						? iconAvatar
-						: params?.param?.fotoPerfil === ''
+						: userB?.fotoPerfil === ''
 						  ? iconAvatar
-						  : params?.param?.fotoPerfil
+						  : userB?.fotoPerfil
 				}
 			/>
 		</>

@@ -6,7 +6,8 @@ import UserName from './UserName'
 function Avatar() {
 	const [data, setData] = useState(true)
 	const [response, setResponse] = useState()
-	const {user} = useUserContext()
+	const {user, userB} = useUserContext()
+	// console.log(dataUserContext())
 
 	const fechtData = async () => {
 		try {
@@ -25,12 +26,12 @@ function Avatar() {
 
 	return (
 		<article className='flex items-center justify-center px-4 md:pt-6 md:px-6'>
-			<ImageAvatar param={response} />
+			<ImageAvatar />
 			<section className='ml-4 md:block hidden'>
 				<article>
 					<UserName datos={response} />
 					<span className='block text-sm capitalize font-poppins text-dark800'>
-						{response && response.ocupacion}
+						{userB && userB.ocupacion}
 					</span>
 				</article>
 				{/* <article className='flex items-center gap-1'>
