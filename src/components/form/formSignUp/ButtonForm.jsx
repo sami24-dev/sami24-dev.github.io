@@ -7,11 +7,13 @@ function ButtonForm(buttonProps) {
 	const handleLoginGoogle = (e) => {
 		e.preventDefault()
 		try {
-			loginWithGoogle()
+			const response = loginWithGoogle()
+			console.log(response)
 		} catch (error) {
 			console.log(error)
 		}
 	}
+
 	return (
 		<Link
 			to='/'

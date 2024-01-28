@@ -6,10 +6,12 @@ import {useUserContext} from '../../../context/UserContext'
 // image-SVG
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
+import google from '../../../assets/form/Google-Logo.png'
 // metodo-signInWithEmailAndPassword-firebase
 import {login} from '../../../firebase/app'
 // components
-import {Toaster, toast} from 'sonner'
+import {toast, Toaster} from 'sonner'
+import ButtonForm from '../formSignUp/ButtonForm'
 import FormInput from '../formSignUp/FormInput'
 
 function Form() {
@@ -65,6 +67,10 @@ function Form() {
 				<h3 className='my-5 text-2xl text-dark900 font-poppins dark:text-customTextLight'>
 					Sign in
 				</h3>
+				<ButtonForm
+					icon={google}
+					content='Sign up with Google'
+				/>
 			</header>
 			<FormInput
 				type='email'

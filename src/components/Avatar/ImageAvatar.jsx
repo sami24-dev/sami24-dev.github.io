@@ -3,7 +3,7 @@ import {useUserContext} from '../../context/UserContext'
 
 function ImageAvatar() {
 	const {userB} = useUserContext()
-
+	console.log(userB)
 	return (
 		<>
 			<img

@@ -6,12 +6,10 @@ import {useUserContext} from '../../../context/UserContext'
 // metodo-createUserWidthEmailAndPassword-firebase
 import {register} from '../../../firebase/app'
 // image-SVG
-import google from '../../../assets/form/Google-Logo.png'
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 // components
 import {Toaster, toast} from 'sonner'
-import ButtonForm from './ButtonForm'
 import FormInput from './FormInput'
 function Form() {
 	const [form, setForm] = useState({
@@ -64,10 +62,6 @@ function Form() {
 				<h3 className='my-5 text-2xl text-dark900 dark:text-customTextLight'>
 					Create Your Acount
 				</h3>
-				<ButtonForm
-					icon={google}
-					content='Sign up with Google'
-				/>
 			</header>
 			<FormInput
 				type='email'

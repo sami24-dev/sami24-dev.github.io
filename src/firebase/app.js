@@ -1,6 +1,9 @@
 // funcion inicializacion firebase
 import { initializeApp } from 'firebase/app';
 // funciones de autenticacion
+// funciones del storage
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+// funciones de las bases de datos 
 import {
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
@@ -9,26 +12,22 @@ import {
 	signInWithPopup,
 	signOut
 } from 'firebase/auth';
-// funciones del storage
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-// funciones de las bases de datos 
 import { deleteDoc, doc, getDoc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
 
 // Configuracion firebase
 
 const firebaseConfig = {
-	apiKey: "AIzaSyBdz1dMXdH1sR2XbbvlF5A6a2WeEFqw7vo",
-	authDomain: "shiftnet-react-demo-be640.firebaseapp.com",
-	projectId: "shiftnet-react-demo-be640",
-	storageBucket: "shiftnet-react-demo-be640.appspot.com",
-	messagingSenderId: "1033368440879",
-	appId: "1:1033368440879:web:b4f84201122186a4acb6da"
+	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_FIREBASE_APP_ID
   };
 
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig)
-
 
 // Conexiones
 export const auth = getAuth(app)
@@ -50,8 +49,6 @@ export const loginWithGoogle = async ()=>{
 export const logout = () => {
 	return signOut(auth)
 }
-
-
 
 // funcion de storage subir imagen
  
