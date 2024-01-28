@@ -2,8 +2,6 @@
 import {Link} from 'react-router-dom'
 
 import {logout} from '../../firebase/app'
-import Avatar from '../Avatar/Avatar'
-import ImageAvatar from '../Avatar/ImageAvatar'
 import LinkSidebar from './LinkSidebar'
 import IconChat from './iconComponent/IconChat'
 import IconFriends from './iconComponent/IconFriends'
@@ -21,36 +19,41 @@ function Sidebar() {
 	}
 	return (
 		<nav className='sticky z-50 top-0 w-full h-14 md:left-0 md:h-screen md:w-64 bg-customTextLight dark:bg-customBgDark text-white flex md:flex-col justify-between'>
-			<div className='hidden md:block'>
-				<Avatar />
-			</div>
-			<div className='block p-2 w-20 md:hidden'>
-				<ImageAvatar />
+			<div className='md:flex justify-center items-end hidden md:h-[16%]'>
+				{/* <ImageAvatar
+					classContain={'p-2 w-20 '}
+					classImg={
+						'w-full shadow-md p-1 rounded-full w-10 h-10 md:w-14 md:h-14 aspect-square object-cover bg-dark '
+					}
+				/> */}
+				<h1 className='whitespace-nowrap top-8 left-6 pl-6 md:pl-0 text-2xl md:text-3xl text-dark900 tracking-wide font-poppins font-bold dark:text-customTextLight'>
+					SHIFT<span className='text-violet-700'>NET.</span>
+				</h1>
 			</div>
 			<ul className='flex md:flex-col justify-between overflow-x-auto'>
 				<LinkSidebar
 					svg={<IconHome />}
-					content='Dashboard'
+					content='Inicio'
 				/>
 				<LinkSidebar
 					svg={<Publications />}
-					content='Publications'
+					content='Publicaciones'
 				/>
 				<LinkSidebar
 					svg={<IconChat />}
-					content='Messages'
+					content='Mensajes'
 				/>
 				<LinkSidebar
 					svg={<IconStore />}
-					content='Store'
+					content='Mercadeo'
 				/>
 				<LinkSidebar
 					svg={<IconFriends />}
-					content='Friends'
+					content='Amigos'
 				/>
 				<LinkSidebar
 					svg={<IconSettings />}
-					content='Settings'
+					content='Configuracion'
 				/>
 			</ul>
 			<div>
@@ -78,7 +81,9 @@ function Sidebar() {
 							y2='12'
 						/>
 					</svg>
-					<span className='ml-4 md:block hidden'>Logout</span>
+					<span className='ml-4 md:block hidden text-nowrap'>
+						Cerrar Seccion
+					</span>
 				</Link>
 			</div>
 		</nav>

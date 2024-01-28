@@ -39,7 +39,12 @@ function Card(params) {
 						/>
 					</div>
 					<div className='flex items-center gap-3 absolute md:top-2 md:left-2'>
-						<ImageAvatar />
+						<ImageAvatar
+							classContain={'absolute top-10 p-2 w-20'}
+							classImg={
+								'w-full shadow-md p-1 rounded-full w-10 h-10 md:w-14 md:h-14 aspect-square object-cover'
+							}
+						/>
 						<UserName />
 					</div>
 				</div>

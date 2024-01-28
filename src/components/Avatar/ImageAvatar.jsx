@@ -1,13 +1,15 @@
+import PropTypes from 'prop-types'
 import iconAvatar from '../../assets/usuario.png'
 import {useUserContext} from '../../context/UserContext'
-
-function ImageAvatar() {
+function ImageAvatar({classContain, classImg}) {
 	const {userB} = useUserContext()
 	console.log(userB)
 	return (
-		<>
+		<div className={`${classContain}`}>
+			{/*  */}
 			<img
-				className='aspect-square object-cover bg-dark shadow-md p-1 rounded-full w-10 h-10 md:w-14 md:h-14'
+				className={`bg-dark ${classImg}`}
+				/*  */
 				src={
 					userB === undefined
 						? iconAvatar
@@ -16,7 +18,11 @@ function ImageAvatar() {
 						  : userB?.fotoPerfil
 				}
 			/>
-		</>
+		</div>
 	)
+}
+ImageAvatar.propTypes = {
+	classContain: PropTypes.string,
+	classImg: PropTypes.string
 }
 export default ImageAvatar

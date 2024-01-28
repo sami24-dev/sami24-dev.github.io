@@ -61,15 +61,15 @@ function Form() {
 	}
 	return (
 		<form
-			className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 md:min-h-max shadow-xl dark:shadow-customShadowLight'
+			className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 md:min-h-max shadow-xl dark:shadow-customShadowLight bg-light'
 			onSubmit={handleSubmit}>
-			<header className='w-4/5 text-center'>
+			<header className='w-4/5 text-center mt-5'>
 				<h3 className='my-5 text-2xl text-dark900 font-poppins dark:text-customTextLight'>
-					Sign in
+					iniciar sesión
 				</h3>
 				<ButtonForm
 					icon={google}
-					content='Sign up with Google'
+					content='iniciar sesión con Google'
 				/>
 			</header>
 			<FormInput
@@ -79,8 +79,8 @@ function Form() {
 				eventTag={handleChange}
 				nameId='email'
 				icon={en}
-				description='email'
-				placeholder='Your email'
+				description='Correo Electronico'
+				placeholder='Correo Electronico'
 			/>
 
 			<FormInput
@@ -90,21 +90,21 @@ function Form() {
 				eventTag={handleChange}
 				nameId='password'
 				icon={look}
-				description='password'
-				placeholder='Your password'
+				description='Contraseña'
+				placeholder='Contraseña'
 			/>
 			<footer className='w-4/5 '>
 				<button
 					className='w-full h-9 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'
 					type='submit'>
-					Sign In
+					Iniciar Sección
 				</button>
 				<hr className='w-full mt-5' />
 				<Link
 					className='text-center'
 					to='/signUp'>
 					<h3 className='mt-2 mb-5 text-dark900 text-xl font-poppins dark:text-customTextLight'>
-						Register
+						Registrarse
 					</h3>
 				</Link>
 			</footer>

@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types'
 
-function FormInput(inputProps) {
-	const {
-		nameId,
-		description,
-		type,
-		name,
-		value,
-		placeholder,
-		eventTag,
-		eventBlur,
-		icon
-	} = inputProps
+function FormInput({
+	nameId,
+	description,
+	type,
+	name,
+	value,
+	placeholder,
+	eventTag,
+	eventBlur,
+	icon
+}) {
 	return (
 		<div className='relative w-4/5 text-xl mt-5'>
 			<label
@@ -39,17 +38,15 @@ function FormInput(inputProps) {
 	)
 }
 FormInput.propTypes = {
-	inputProps: PropTypes.shape({
-		nameId: PropTypes.string,
-		description: PropTypes.string,
-		type: PropTypes.string,
-		name: PropTypes.string,
-		value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-		placeholder: PropTypes.string,
-		eventTag: PropTypes.func,
-		eventBlur: PropTypes.func,
-		icon: PropTypes.string
-	})
+	nameId: PropTypes.string,
+	description: PropTypes.string,
+	type: PropTypes.string,
+	name: PropTypes.string,
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	placeholder: PropTypes.string,
+	eventTag: PropTypes.func,
+	eventBlur: PropTypes.func,
+	icon: PropTypes.string
 }
 
 export default FormInput

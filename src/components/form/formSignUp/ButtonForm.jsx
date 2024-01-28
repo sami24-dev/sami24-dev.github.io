@@ -1,9 +1,8 @@
-import {Link} from 'react-router-dom'
-
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 import {loginWithGoogle} from '../../../firebase/app'
-function ButtonForm(buttonProps) {
-	const {icon, content} = buttonProps
+
+function ButtonForm({icon, content}) {
 	const handleLoginGoogle = (e) => {
 		e.preventDefault()
 		try {
@@ -31,10 +30,8 @@ function ButtonForm(buttonProps) {
 	)
 }
 ButtonForm.propTypes = {
-	buttonProps: PropTypes.shape({
-		icon: PropTypes.string,
-		content: PropTypes.string.isRequired
-	})
+	icon: PropTypes.string,
+	content: PropTypes.string.isRequired
 }
 
 export default ButtonForm

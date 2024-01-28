@@ -17,6 +17,7 @@ export const router = createBrowserRouter([
 				index: true,
 				element: <FormSignIn />
 			},
+
 			{
 				path: '/signUp',
 				element: <Form />
