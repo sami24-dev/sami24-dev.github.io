@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 // funciones de autenticacion
 // funciones del storage
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes, uploadString } from "firebase/storage";
 // funciones de las bases de datos 
 import {
 	GoogleAuthProvider,
@@ -52,14 +52,17 @@ export const logout = () => {
 
 // funcion de storage subir imagen
  
- export const uploadFile = async (file, uid, type) => {
+ export const uploadFile = async (base64, uid,) => {
 	try {
 		const storageRef = ref(storage, `${uid}/avatar/Profile-photo`)
-		const message = file
-		const metaData = {
+		const message = base64
+		/* const metaData = {
 			contentType: type
-		}
-		await uploadBytes(storageRef, message, metaData)
+		} */
+		/* await uploadBytes(storageRef, message, metaData) */
+		uploadString(storageRef, message, 'base64').then((snapshot) => {
+			console.log('Uploaded a data_url string!');
+		  });
 		return await getDownloadURL(storageRef)
 	} catch (error) {
 		console.log(error)
@@ -111,8 +114,8 @@ export const getUserData = async (id) => {
 	try {
 		const docRef = doc(db, 'usuarios', id)
 		const docSnap = await getDoc(docRef)
+		console.log(docSnap.data())
 		return docSnap.data()
-		
 	} catch (error) {
 		console.log(error)
 	}

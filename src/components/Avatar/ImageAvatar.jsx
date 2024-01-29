@@ -3,7 +3,7 @@ import iconAvatar from '../../assets/usuario.png'
 import {useUserContext} from '../../context/UserContext'
 function ImageAvatar({classContain, classImg}) {
 	const {userB} = useUserContext()
-	console.log(userB)
+
 	return (
 		<div className={`${classContain}`}>
 			{/*  */}

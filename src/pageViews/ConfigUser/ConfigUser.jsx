@@ -15,7 +15,6 @@ function ConfigUser() {
 	const [avatar, setAvatar] = useState({
 		previewAvatar: User,
 		uploadAvatar: false,
-		typeAvatar: ''
 	})
 	const [userData, setUserData] = useState({
 		urlAvatar: '',
@@ -25,9 +24,10 @@ function ConfigUser() {
 	})
 
 	// destructuracion
-	const {user} = useUserContext()
-	const {uid, email} = user
-	const {previewAvatar, uploadAvatar, typeAvatar} = avatar
+	const {
+		user: {uid, email}
+	} = useUserContext()
+	const {previewAvatar, uploadAvatar} = avatar
 	const {firstName, lastName, urlAvatar, profession} = userData
 
 	// useNavigate react-router-dom
@@ -41,7 +41,6 @@ function ConfigUser() {
 
 	const handleChangeAvatar = (e) => {
 		const file = e.target.files[0]
-		const type = file.type
 		if (file && file.type.substring(0, 5) === 'image') {
 			const reader = new FileReader()
 			reader.onloadend = () => {
@@ -49,24 +48,24 @@ function ConfigUser() {
 				setAvatar({
 					...avatar,
 					previewAvatar: imageUrl,
-					uploadAvatar: file,
-					typeAvatar: type
+					uploadAvatar: imageUrl.split(',')[1],
+					
 				})
 			}
 			reader.readAsDataURL(file)
 		}
 	}
-
+	console.log(uploadAvatar)
 	// esta funcion sube la foto al servidor de firebase y me retorna la url de la foto
 	const UploadPhoto = async () => {
 		try {
-			const urlPhoto = await uploadFile(uploadAvatar, uid, typeAvatar)
+			const urlPhoto = await uploadFile(uploadAvatar, uid)
 			setUserData({...userData, urlAvatar: urlPhoto})
 		} catch (error) {
 			console.log(error)
 		}
 	}
-
+	/* console.log(urlAvatar) */
 	useEffect(() => {
 		if (uploadAvatar) {
 			toast.promise(UploadPhoto, {
@@ -77,7 +76,6 @@ function ConfigUser() {
 			})
 		}
 	}, [uploadAvatar])
-	console.log(urlAvatar)
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {

@@ -25,11 +25,6 @@ export const router = createBrowserRouter([
 		]
 	},
 	{
-		path: '/configUser',
-		element: <ConfigUser />,
-		errorElement: <NotFound />
-	},
-	{
 		path: '/app',
 		element: <LayoutApp />,
 		errorElement: <NotFound />,
@@ -37,6 +32,11 @@ export const router = createBrowserRouter([
 			{
 				index: true,
 				element: <Profile />
+			},
+			{
+				path: '/app/configUser',
+				element: <ConfigUser />,
+				errorElement: <NotFound />
 			}
 		]
 	}

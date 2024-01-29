@@ -1,35 +1,15 @@
-import {useEffect, useState} from 'react'
 import {useUserContext} from '../../context/UserContext'
-import {getUserData} from '../../firebase/app'
 import ImageAvatar from './ImageAvatar'
 import UserName from './UserName'
 function Avatar() {
-	const [data, setData] = useState(true)
-	const [response, setResponse] = useState()
-	const {user, userB} = useUserContext()
-	// console.log(dataUserContext())
-
-	const fechtData = async () => {
-		try {
-			if (data) {
-				const result = await getUserData(user.uid)
-				setResponse(result)
-			}
-		} catch (error) {
-			console.log(error)
-		}
-	}
-	useEffect(() => {
-		fechtData()
-		setData(false)
-	}, [response])
+	const {userB} = useUserContext()
 
 	return (
 		<article className='flex flex-col items-center justify-center gap-1 px-4 md:pt-6 md:px-6'>
 			<ImageAvatar />
 			<section className='ml-4 md:block hidden'>
 				<article className='md:flex md:flex-col'>
-					<UserName datos={response} />
+					<UserName datos={userB.nombre} />
 					<span className='block text-sm capitalize font-poppins text-dark800'>
 						{userB && userB.ocupacion}
 					</span>

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 // react-router-dom
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 // UserContex
 import {useUserContext} from '../../../context/UserContext'
 // metodo-createUserWidthEmailAndPassword-firebase
@@ -10,23 +10,23 @@ import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
 // components
 import {Toaster, toast} from 'sonner'
+import FooterForm from './FooterForm'
 import FormInput from './FormInput'
-function Form({toogle}) {
+function Form() {
 	const [form, setForm] = useState({
 		email: '',
 		password: ''
 	})
-	const {email, password,} = form
+	const {email, password} = form
 	// navegar al home con el hook creado de context y el useNavigte si el usuario existe
 	const navigate = useNavigate()
 	const {user, setUser} = useUserContext()
 	useEffect(() => {
 		if (user) {
-			navigate('/configUser')
+			navigate('/app/configUser')
 		}
 	}, [user])
 	const isValidEmail = (email) => {
-		// Puedes utilizar una expresión regular o alguna otra lógica para validar el correo electrónico
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 		return emailRegex.test(email)
 	}
@@ -61,7 +61,7 @@ function Form({toogle}) {
 				onSubmit={handleSubmit}>
 				<header className='w-4/5 text-center'>
 					<h3 className='my-5 text-2xl text-dark900 dark:text-customTextLight'>
-						Create Your Acount
+						Crear Cuenta
 					</h3>
 				</header>
 				<FormInput
@@ -84,21 +84,11 @@ function Form({toogle}) {
 					description='password'
 					placeholder='Your password'
 				/>
-				<footer className='w-4/5 '>
-					<button
-						className='w-full h-9 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'
-						type='submit'>
-						Sign Up
-					</button>
-					<hr className='w-full mt-5' />
-					<Link
-						className='text-center '
-						to='/'>
-						<h3 className='mt-2 mb-5 text-xl text-dark900 font-poppins dark:text-customTextLight'>
-							Login
-						</h3>
-					</Link>
-				</footer>
+				<FooterForm
+					BtnPrimary={'Registrarse'}
+					BtnSecundary={'Acceso'}
+					rute={'/'}
+				/>
 				<Toaster
 					richColors
 					position='bottom-right'
