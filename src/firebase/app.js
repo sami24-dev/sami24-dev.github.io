@@ -114,7 +114,7 @@ export const getUserData = async (id) => {
 	try {
 		const docRef = doc(db, 'usuarios', id)
 		const docSnap = await getDoc(docRef)
-		console.log(docSnap.data())
+		
 		return docSnap.data()
 	} catch (error) {
 		console.log(error)
