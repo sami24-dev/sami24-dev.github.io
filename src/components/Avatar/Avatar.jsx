@@ -1,27 +1,59 @@
+import PropTypes from 'prop-types'
+import {useEffect, useState} from 'react'
 import {useUserContext} from '../../context/UserContext'
-import ImageAvatar from './ImageAvatar'
-import UserName from './UserName'
-function Avatar() {
-	const {userB} = useUserContext()
+import {getUserData} from '../../firebase/app'
 
+function Avatar({classContainAvatar, classContainImg, classImg, classUser, classOcupation}) {
+	const {user} = useUserContext()
+	const [userB, setUserB] = useState()
+	const [state, setState] = useState(true)
+	const fechtData = async () => {
+		try {
+			if (user && state) {
+				const result = await getUserData(user.uid)
+				setUserB({...userB, result})
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	useEffect(() => {
+		if (user && state) {
+			fechtData()
+
+			return () => {
+				setState(false)
+			}
+		}
+	}, [user, state])
+	console.log(userB?.result)
 	return (
-		<article className='flex flex-col items-center justify-center gap-1 px-4 md:pt-6 md:px-6'>
-			<ImageAvatar />
-			<section className='ml-4 md:block hidden'>
-				<article className='md:flex md:flex-col'>
-					<UserName datos={userB.nombre} />
-					<span className='block text-sm capitalize font-poppins text-dark800'>
-						{userB && userB.ocupacion}
-					</span>
-				</article>
-				{/* <article className='flex items-center gap-1'>
-					<span className='font-medium text-zinc-500 dark:text-zinc-400'>
-						1.5k
-					</span>
-					<span className='text-zinc-500 dark:text-zinc-400'>followers</span>
-				</article> */}
-			</section>
+		<article className={` ${classContainAvatar}`}>
+			<div
+				className={` ${classContainImg}`}>
+				<img
+					className={` ${classImg}`}
+					src={userB?.result?.fotoPerfil}
+				/>
+			</div>
+			<div className='md:flex md:flex-col md:justify-center items-start ml-4'>
+				<h6
+					className={` ${classUser}`}>
+					{userB?.result?.nombre} <span>{userB?.result?.apellido}</span>
+				</h6>
+				<h5
+					className={` ${classOcupation}`}>
+					{userB?.result?.ocupacion}
+				</h5>
+			</div>
 		</article>
 	)
+}
+Avatar.propTypes = {
+	classContainAvatar: PropTypes.string,
+	classContainImg: PropTypes.string,
+	classImg: PropTypes.string,
+	classUser: PropTypes.string,
+	classOcupation: PropTypes.string
 }
 export default Avatar

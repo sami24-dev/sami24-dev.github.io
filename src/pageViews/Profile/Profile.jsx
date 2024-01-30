@@ -1,14 +1,14 @@
-import {collection, getDocs} from 'firebase/firestore'
+/* import {collection, getDocs} from 'firebase/firestore'
 import {useEffect, useState} from 'react'
-import Card from '../../components/Card/Card'
-import Panel from '../../components/Panel/Panel'
-import Post from '../../components/Post/Post'
-import Sidebar from '../../components/sidebar/Sidebar'
 import {useUserContext} from '../../context/UserContext'
-import {db} from '../../firebase/app'
+import {db} from '../../firebase/app' */
+import About from '../../components/About/About'
+import Panel from '../../components/Panel/Panel'
+import FrontPage from '../../components/frontPage/FrontPage'
+import './scroll.css'
 
 export default function Component() {
-	const [publications, setPublications] = useState(false)
+	/* const [publications, setPublications] = useState(false)
 	const [state, setState] = useState(true)
 	const {user} = useUserContext()
 	const {uid} = user
@@ -30,35 +30,24 @@ export default function Component() {
 				setState(false)
 			}
 		}
-	}, [user, state])
+	}, [user, state]) */
 	return (
 		<>
-			<header>
-				<Sidebar />
-			</header>
-			<main className='md:flex md:w-full h-screen bg-customBgDark dark:bg-gray-900'>
-				<Panel />
-				<section className='flex flex-col flex-1 md:max-w-4xl bg-white dark:bg-customBgDark overflow-y-auto'>
-					<Post open={fechtData} />
-					<section className='py-5 px-2 space-y-4 md:overflow-auto bg-customTextLight dark:bg-customBgDark h-full'>
-						{publications &&
-							publications.map((subArray) =>
-								subArray.map((obj) => {
-									return (
-										<article
-											key={obj.id}
-											className='bg-white h-80 max-w-md mx-auto shadow-sm dark:shadow-sm rounded-md overflow-hidden md:max-w-2xl flex flex-col md:flex-row md:h-60 md:justify-between md:items-center relative dark:shadow-customBorderDark dark:bg-customBgDark'>
-											<Card
-												param={obj}
-												open={fechtData}
-											/>
-										</article>
-									)
-								})
-							)}
+			<main className='lg:flex lg:w-full h-screen bg-customBgDark dark:bg-gray-900 py-2 px-2 md:px-0 rounded-md'>
+				<section className='flex flex-col flex-1 lg:max-w-full bg-customBgDark dark:bg-customBgDark overflow-y-auto rounded-md'>
+					<section className='space-y-4 lg:overflow-auto bg-customTextLight dark:bg-customBgDark h-full rounded-md '>
+						<FrontPage />
+						<div className='p-2'>
+							<About />
+							<About />
+							<About />
+						</div>
 					</section>
 				</section>
 			</main>
+			<aside className='bg-customBgDark dark:bg-gray-900 p-2 hidden md:block'>
+				<Panel />
+			</aside>
 		</>
 	)
 }

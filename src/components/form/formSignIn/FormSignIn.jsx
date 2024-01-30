@@ -62,7 +62,7 @@ function Form() {
 	}
 	return (
 		<form
-			className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 md:min-h-max shadow-xl dark:shadow-customShadowLight bg-light'
+			className='flex justify-center items-center rounded-md flex-col gap-3 w-full h-screen md:w-96 md:min-h-max  dark:bg-customBgDark bg-light'
 			onSubmit={handleSubmit}>
 			<header className='w-4/5 text-center mt-5'>
 				<h3 className='my-5 text-2xl text-dark900 font-poppins dark:text-customTextLight'>

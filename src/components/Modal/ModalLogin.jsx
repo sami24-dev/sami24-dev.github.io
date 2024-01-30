@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-function ModalLogin({isOpen, onClose, component}) {
+function ModalLogin({isOpen, onClose, children}) {
 	return (
 		isOpen && (
 			<section
@@ -12,7 +12,7 @@ function ModalLogin({isOpen, onClose, component}) {
 						onClick={onClose}>
 						&times;
 					</span>
-					{component}
+					{children}
 				</article>
 			</section>
 		)

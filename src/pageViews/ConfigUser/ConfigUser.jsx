@@ -1,81 +1,40 @@
 // context user
 import {useUserContext} from '../../context/UserContext'
 // hook react
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 // funciones de app firebase
-import {setUserDb, uploadFile} from '../../firebase/app'
+import {setUserDb} from '../../firebase/app'
 // react router dom
 import {useNavigate} from 'react-router-dom'
 // biblioteca sonner
 import {Toaster, toast} from 'sonner'
-// imagen
-import User from '../../assets/usuario.png'
+
+import GetPhoto from '../../components/GetPhoto/GetPhoto'
 function ConfigUser() {
 	// estados
-	const [avatar, setAvatar] = useState({
-		previewAvatar: User,
-		uploadAvatar: false,
-	})
+
 	const [userData, setUserData] = useState({
 		urlAvatar: '',
 		firstName: '',
 		lastName: '',
 		profession: ''
 	})
-
+	// useNavigate react-router-dom
+	const navigate = useNavigate()
 	// destructuracion
 	const {
 		user: {uid, email}
 	} = useUserContext()
-	const {previewAvatar, uploadAvatar} = avatar
 	const {firstName, lastName, urlAvatar, profession} = userData
-
-	// useNavigate react-router-dom
-	const navigate = useNavigate()
-
 	// funciones para detectar el cambio  en las entradas
 	const handleChange = (e) => {
 		const {name, value} = e.target
 		setUserData({...userData, [name]: value})
 	}
-
-	const handleChangeAvatar = (e) => {
-		const file = e.target.files[0]
-		if (file && file.type.substring(0, 5) === 'image') {
-			const reader = new FileReader()
-			reader.onloadend = () => {
-				const imageUrl = reader.result
-				setAvatar({
-					...avatar,
-					previewAvatar: imageUrl,
-					uploadAvatar: imageUrl.split(',')[1],
-					
-				})
-			}
-			reader.readAsDataURL(file)
-		}
+	const getDataPhoto = (props) => {
+		setUserData({...userData, urlAvatar: props})
+		console.log(props)
 	}
-	console.log(uploadAvatar)
-	// esta funcion sube la foto al servidor de firebase y me retorna la url de la foto
-	const UploadPhoto = async () => {
-		try {
-			const urlPhoto = await uploadFile(uploadAvatar, uid)
-			setUserData({...userData, urlAvatar: urlPhoto})
-		} catch (error) {
-			console.log(error)
-		}
-	}
-	/* console.log(urlAvatar) */
-	useEffect(() => {
-		if (uploadAvatar) {
-			toast.promise(UploadPhoto, {
-				loading: 'Cargando la imagen. Por favor, espera...',
-				success: '¡La imagen se ha cargado con éxito!',
-				error:
-					'La conexión con el servidor se perdió durante la carga de la imagen. '
-			})
-		}
-	}, [uploadAvatar])
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
@@ -104,27 +63,7 @@ function ConfigUser() {
 				<form
 					className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 p-2 md:mt-3 shadow-xl dark:shadow-customShadowLight'
 					onSubmit={handleSubmit}>
-					<div className='flex flex-col justify-center items-center relative w-full text-xl mt-4 mb-10'>
-						<label
-							className='bg-transparent rounded-md'
-							htmlFor='userImg'>
-							<img
-								className='rounded-full w-36 h-36 cursor-pointer'
-								src={previewAvatar}
-								alt='User'
-							/>
-						</label>
-						<input
-							className='hidden'
-							accept='image/*'
-							type='file'
-							id='userImg'
-							onChange={handleChangeAvatar}
-						/>
-						<p className='mt-2 text-base text-muted-foreground text-center font-poppins dark:text-customTextLight'>
-							Enter your profile photo
-						</p>
-					</div>
+					<GetPhoto enviarDatosAlPadre={getDataPhoto} />
 					<div className='relative w-4/5 text-xl mt-5'>
 						<label
 							htmlFor='firstName'

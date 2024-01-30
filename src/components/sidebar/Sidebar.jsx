@@ -1,14 +1,13 @@
-/* eslint-disable react/no-unknown-property */
 import {Link} from 'react-router-dom'
-
 import {logout} from '../../firebase/app'
+import Logo from '../Logo/Logo'
+import IconChat from '../iconComponent/IconChat'
+import IconFriends from '../iconComponent/IconFriends'
+import IconHome from '../iconComponent/IconHome'
+import IconSettings from '../iconComponent/IconSettings'
+import IconStore from '../iconComponent/IconStore'
+import Publications from '../iconComponent/Publications'
 import LinkSidebar from './LinkSidebar'
-import IconChat from './iconComponent/IconChat'
-import IconFriends from './iconComponent/IconFriends'
-import IconHome from './iconComponent/IconHome'
-import IconSettings from './iconComponent/IconSettings'
-import IconStore from './iconComponent/IconStore'
-import Publications from './iconComponent/Publications'
 function Sidebar() {
 	const handleLogaut = async () => {
 		try {
@@ -18,7 +17,7 @@ function Sidebar() {
 		}
 	}
 	return (
-		<nav className='sticky z-50 top-0 w-full h-14 md:left-0 md:h-screen md:w-64 bg-customTextLight dark:bg-customBgDark text-white flex md:flex-col justify-between'>
+		<nav className='sticky z-50 top-0 w-full h-14 md:left-0 md:h-full md:w-56 bg-light dark:bg-customBgDark text-white flex md:flex-col justify-between rounded-md'>
 			<div className='md:flex justify-center items-end hidden md:h-[16%]'>
 				{/* <ImageAvatar
 					classContain={'p-2 w-20 '}
@@ -26,9 +25,7 @@ function Sidebar() {
 						'w-full shadow-md p-1 rounded-full w-10 h-10 md:w-14 md:h-14 aspect-square object-cover bg-dark '
 					}
 				/> */}
-				<h1 className='whitespace-nowrap top-8 left-6 pl-6 md:pl-0 text-2xl md:text-3xl text-dark900 tracking-wide font-poppins font-bold dark:text-customTextLight'>
-					SHIFT<span className='text-violet-700'>NET.</span>
-				</h1>
+				<Logo />
 			</div>
 			<ul className='flex md:flex-col justify-between overflow-x-auto'>
 				<LinkSidebar

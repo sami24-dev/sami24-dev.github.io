@@ -1,14 +1,14 @@
 function GitHub() {
 	return (
 		<a
-			className='text-customTextDark'
+			className='text-customTextDark dark:text-customTextLight'
 			href='https://github.com/sami24-dev/sami24-dev.github.io'
 			aria-label='Link de repositorio'
 			target='_blank'
 			rel='noreferrer'>
 			<svg
-				width='24'
-				height='24'
+				width='28'
+				height='28'
 				viewBox='0 0 24 24'
 				fill='currentColor'
 				xmlns='http://www.w3.org/2000/svg'>

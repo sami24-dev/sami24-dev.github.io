@@ -2,11 +2,9 @@ import {deleteDoc, doc} from 'firebase/firestore'
 import PropTypes from 'prop-types'
 import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app'
-import ImageAvatar from '../Avatar/ImageAvatar'
-import UserName from '../Avatar/UserName'
 import LinkCard from '../LinkCard/LInkCard'
 import Modal from '../Modal/Modal'
-import TrashIcon from '../sidebar/iconComponent/TrashIcon'
+import TrashIcon from '../iconComponent/TrashIcon'
 
 function Card(params) {
 	const {param, open} = params
@@ -38,15 +36,7 @@ function Card(params) {
 							udapte={open}
 						/>
 					</div>
-					<div className='flex items-center gap-3 absolute md:top-2 md:left-2'>
-						<ImageAvatar
-							classContain={'absolute top-10 p-2 w-20'}
-							classImg={
-								'w-full shadow-md p-1 rounded-full w-10 h-10 md:w-14 md:h-14 aspect-square object-cover'
-							}
-						/>
-						<UserName />
-					</div>
+					<div className='flex items-center gap-3 absolute md:top-2 md:left-2'></div>
 				</div>
 				<div className='flex justify-start items-center py-8 px-4 '>
 					<p className='flex mt-2 text-xl text-customTextDark dark:text-customTextLight whitespace-pre-line'>

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 function Logo({classLogo}) {
 	return (
-		<h2 className='whitespace-nowrap top-8 left-6 pl-6 md:pl-0 text-2xl md:text-3xl text-dark900 tracking-wide font-poppins font-bold dark:text-customTextLight'>
+		<h2
+			className={`text-nowrap text-2xl md:text-3xl text-dark dark:text-light tracking-wide font-poppins font-bold dark:text-customTextLight${classLogo}`}>
 			SHIFT<span className='text-light500'>NET.</span>
 		</h2>
 	)

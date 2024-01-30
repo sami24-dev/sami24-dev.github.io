@@ -4,7 +4,7 @@ import {Toaster, toast} from 'sonner'
 import {useUserContext} from '../../context/UserContext'
 import {udaptePost, uploadPost} from '../../firebase/app'
 import LinkCard from '../LinkCard/LInkCard'
-import PencilIcon from '../sidebar/iconComponent/PencilIcon'
+import PencilIcon from '../iconComponent/PencilIcon'
 const Modal = (props) => {
 	// eslint-disable-next-line react/prop-types
 	const {date, udapte} = props

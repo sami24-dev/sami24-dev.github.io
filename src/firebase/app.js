@@ -54,15 +54,10 @@ export const logout = () => {
  
  export const uploadFile = async (base64, uid,) => {
 	try {
-		const storageRef = ref(storage, `${uid}/avatar/Profile-photo`)
+		const storageRef = ref(storage, `${uid}/avatar/ProfilePhoto`)
 		const message = base64
-		/* const metaData = {
-			contentType: type
-		} */
-		/* await uploadBytes(storageRef, message, metaData) */
-		uploadString(storageRef, message, 'base64').then((snapshot) => {
-			console.log('Uploaded a data_url string!');
-		  });
+		
+		await uploadString(storageRef, message, 'base64')
 		return await getDownloadURL(storageRef)
 	} catch (error) {
 		console.log(error)
@@ -114,7 +109,7 @@ export const getUserData = async (id) => {
 	try {
 		const docRef = doc(db, 'usuarios', id)
 		const docSnap = await getDoc(docRef)
-		
+		console.log(docRef)
 		return docSnap.data()
 	} catch (error) {
 		console.log(error)

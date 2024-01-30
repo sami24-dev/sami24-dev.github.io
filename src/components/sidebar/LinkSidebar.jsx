@@ -5,7 +5,7 @@ export default function LinkSidebar(LinkProps) {
 	return (
 		<li>
 			<Link
-				className='flex items-center p-4 mb-1 font-poppins text-xl text-dark  dark:text-light rounded-md md:hover:text-light md:hover:bg-light500 active:text-light500 md:active:bg-light500 transition-color duration-300 ease-in-out disabled:opacity-75  '
+				className='flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-dark dark:text-light rounded-md md:hover:text-light md:hover:bg-light500 active:text-light500 md:active:bg-light500 transition-color duration-300 ease-in-out disabled:opacity-75  '
 				to={path}>
 				{svg}
 				<span className='ml-4 md:block hidden'>{content}</span>
