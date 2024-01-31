@@ -7,7 +7,7 @@ function LayoutApp() {
 
 	return (
 		<>
-			<header className='bg-customBgDark dark:bg-gray-900  p-2'>
+			<header className='bg-customBgDark dark:bg-gray-900 p-2'>
 				<Sidebar />
 			</header>
 			{!user ? <Navigate to='/' /> : <Outlet />}

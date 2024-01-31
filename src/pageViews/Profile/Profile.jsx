@@ -33,19 +33,17 @@ export default function Component() {
 	}, [user, state]) */
 	return (
 		<>
-			<main className='lg:flex lg:w-full h-screen bg-customBgDark dark:bg-gray-900 py-2 px-2 md:px-0 rounded-md'>
-				<section className='flex flex-col flex-1 lg:max-w-full bg-customBgDark dark:bg-customBgDark overflow-y-auto rounded-md'>
-					<section className='space-y-4 lg:overflow-auto bg-customTextLight dark:bg-customBgDark h-full rounded-md '>
-						<FrontPage />
-						<div className='p-2'>
-							<About />
-							<About />
-							<About />
-						</div>
-					</section>
+			<main className='lg:flex lg:w-full lg:h-screen bg-customBgDark dark:bg-gray-900 rounded-md md:overflow-y-scroll lg:overflow-y-scroll px-2 md:px-0 lg:px-0 lg:py-2'>
+				<section className='flex flex-col flex-1 bg-customBgDark md:overflow-y-scroll dark:bg-customBgDark rounded-md'>
+					<FrontPage />
+					<article className='flex flex-col justify-center items-center bg-customTextLight dark:bg-customBgDark rounded-md '>
+						<About />
+						<About />
+						<About />
+					</article>
 				</section>
 			</main>
-			<aside className='bg-customBgDark dark:bg-gray-900 p-2 hidden md:block'>
+			<aside className='bg-customBgDark dark:bg-gray-900 hidden md:block py-2 pr-2'>
 				<Panel />
 			</aside>
 		</>

@@ -1,6 +1,6 @@
 function About() {
 	return (
-		<article className='flex flex-col p-2 w-full rounded-md border border-blue-zodiac-400 mt-5'>
+		<article className='flex flex-col p-2 w-[95%] rounded-md border border-blue-zodiac-400 my-5'>
 			<header className='border-b border-blue-zodiac-500'>
 				<h2 className='text-dark dark:text-light font-poppins'>Acerca De</h2>
 			</header>

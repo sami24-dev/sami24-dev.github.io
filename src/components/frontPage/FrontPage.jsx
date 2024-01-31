@@ -3,7 +3,7 @@ import Portada from './portada.png'
 function FrontPage() {
 	return (
 		<>
-			<header className='w-full h-[50%] min-h-[350px] relative'>
+			<header className='w-full h-[30%] min-h-[200px] lg:h-1/2  lg:min-h-[350px] relative bg-customTextLight dark:bg-customBgDark rounded-md mb-2'>
 				<div>
 					<img
 						className='object-cover aspect-auto rounded-tl-md rounded-tr-md'
