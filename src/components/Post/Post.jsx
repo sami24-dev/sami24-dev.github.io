@@ -3,11 +3,15 @@ import {useUserContext} from '../../context/UserContext'
 // hook react
 import {useEffect, useState} from 'react'
 // funciones de firebase/app.js
+import PropTypes from 'prop-types'
 import {setUserPost, uploadPost} from '../../firebase/app'
 // biblioteca de uid unicos
 import {Toaster, toast} from 'sonner'
 import {v4 as uuidv4} from 'uuid'
-function Post(param) {
+import IconImage from '../iconComponent/IconImage'
+// eslint-disable-next-line react/prop-types
+function Post({open, close}) {
+	console.log(open)
 	// estados
 	const [post, setPost] = useState({
 		descriptions: '',
@@ -20,7 +24,6 @@ function Post(param) {
 	})
 
 	// destructuracion
-	const {open} = param
 	const {user} = useUserContext()
 	const {uid} = user
 	const {descriptions, urlLink} = post
@@ -82,79 +85,61 @@ function Post(param) {
 			}
 			const res = await setUserPost(descriptions, urlLink, uuidv4(), uid)
 			console.log(res)
-			// setComplete({...complete, result: res})
-
-			setImage('')
 			setPost({...post, descriptions: ''})
-
+			close()
 			open()
 		} catch (error) {
 			console.log(error)
 		}
 	}
 	return (
-		<header className='bg-white dark:bg-customBgLight relative'>
-			<textarea
-				className='w-full h-12 md:h-19 py-3 px-6 whitespace-pre-line rounded-md resize-none outline-none text-customTextDark font-poppins dark:bg-customBgLight dark:text-customTextLight'
-				placeholder='Crear Publicación'
-				name='descriptions'
-				value={descriptions}
-				onChange={handleChange}
-			/>
-			<label
-				className='absolute top-2 right-1 cursor-pointer w-10 h-10 text-customTextDark dark:text-customTextLight'
-				htmlFor='inputFiled'>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					width='24'
-					height='24'
-					viewBox='0 0 24 24'
-					fill='none'
-					stroke='currentColor'
-					strokeWidth='2'
-					strokeLinecap='round'
-					strokeLinejoin='round'>
-					<rect
-						width='18'
-						height='18'
-						x='3'
-						y='3'
-						rx='2'
-						ry='2'
-					/>
-					<circle
-						cx='9'
-						cy='9'
-						r='2'
-					/>
-					<path d='m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21' />
-				</svg>
-			</label>
-			<input
-				className='hidden'
-				accept='image/*'
-				type='file'
-				name=''
-				id='inputFiled'
-				onChange={handleImage}
-			/>
-			<img
-				className='w-full h-auto cursor-pointer'
-				src={previewImage}
-			/>
+		<article className='w-full h-full p-10'>
+			<header className=''>
+				<label
+					className='flex gap-x-2 items-center text-dark dark:text-light font-poppins cursor-pointer'
+					htmlFor='inputFiled'>
+					<IconImage /> Agregar Imagen
+				</label>
+				<input
+					className='hidden'
+					accept='image/*'
+					type='file'
+					name=''
+					id='inputFiled'
+					onChange={handleImage}
+				/>
+			</header>
+			<main className='flex mt-5'>
+				<textarea
+					className='box w-full h-12 md:h-auto p-2 bg-transparent  rounded-md resize-none outline-none text-customTextDark font-poppins  dark:text-customTextLight'
+					placeholder='¿Sobre que deseas hablar?'
+					name='descriptions'
+					value={descriptions}
+					onChange={handleChange}
+				/>
 
-			<button
-				onClick={handleSubmit}
-				className='w-full h-9 mt-2 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'>
-				Publish
-			</button>
-			<Toaster
-				richColors
-				position='top-center'
-				expand={true}
-				closeButton={true}
-			/>
-		</header>
+				<img
+					className='w-64 h-auto cursor-pointer rounded-md'
+					src={previewImage}
+				/>
+			</main>
+			<footer className='w-full min-h-14 relative'>
+				<button
+					onClick={handleSubmit}
+					className='w-max p-2 rounded-md font-poppins text-light text-xl bg-dark900 transition-color duration-500 ease-in-out hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800 absolute right-0 bottom-0'>
+					Publish
+				</button>
+				<Toaster
+					richColors
+					position='top-center'
+					expand={true}
+					closeButton={true}
+				/>
+			</footer>
+		</article>
 	)
+}
+Post.propTypes = {
+	open: PropTypes.func
 }
 export default Post

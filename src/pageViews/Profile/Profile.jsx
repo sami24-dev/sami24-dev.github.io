@@ -2,50 +2,43 @@
 import {useEffect, useState} from 'react'
 import {useUserContext} from '../../context/UserContext'
 import {db} from '../../firebase/app' */
-import About from '../../components/About/About'
+import Card from '../../components/Card/Card'
 import Panel from '../../components/Panel/Panel'
+import Publications from '../../components/Publications/Publications'
 import FrontPage from '../../components/frontPage/FrontPage'
-import './scroll.css'
+import {useDataPost} from '../../hooks/useDataPost'
+import '../../scroll.css'
 
-export default function Component() {
-	/* const [publications, setPublications] = useState(false)
-	const [state, setState] = useState(true)
-	const {user} = useUserContext()
-	const {uid} = user
-
-	const fechtData = async () => {
-		try {
-			const q = collection(db, uid)
-			const date = await getDocs(q)
-			setPublications(date.docs.map((doc) => [{...doc.data(), id: doc.id}]))
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-	useEffect(() => {
-		if (user && state) {
-			fechtData()
-			return () => {
-				setState(false)
-			}
-		}
-	}, [user, state]) */
+function Profile() {
+	const {post, fechtData} = useDataPost()
 	return (
 		<>
-			<main className='lg:flex lg:w-full lg:h-screen bg-customBgDark dark:bg-gray-900 rounded-md md:overflow-y-scroll lg:overflow-y-scroll px-2 md:px-0 lg:px-0 lg:py-2'>
-				<section className='flex flex-col flex-1 bg-customBgDark md:overflow-y-scroll dark:bg-customBgDark rounded-md'>
+			<main className='lg:flex flex-col lg:w-full lg:h-screen rounded-md  px-2 md:px-0 lg:px-0 lg:py-2'>
+				<section className='box md:overflow-y-scroll'>
 					<FrontPage />
-					<article className='flex flex-col justify-center items-center bg-customTextLight dark:bg-customBgDark rounded-md '>
-						<About />
-						<About />
-						<About />
-					</article>
+					<Publications />
+					{post &&
+						post.map((subArray) =>
+							subArray.map((obj) => {
+								return (
+									<article
+										key={obj.id}
+										className='flex flex-col
+												w-full mb-2 rounded-md overflow-hidden bg-light dark:bg-customBgDark relative'>
+										<Card
+											param={obj}
+											open={fechtData}
+										/>
+									</article>
+								)
+							})
+						)}
 				</section>
 			</main>
-			<aside className='bg-customBgDark dark:bg-gray-900 hidden md:block py-2 pr-2'>
+			<aside className='bg-customBgDark dark:bg-gray-900 hidden md:block p-2'>
 				<Panel />
 			</aside>
 		</>
 	)
 }
+export default Profile

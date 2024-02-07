@@ -1,9 +1,8 @@
 function About() {
 	return (
-		<article className='flex flex-col p-2 w-[95%] rounded-md border border-blue-zodiac-400 my-5'>
-			<header className='border-b border-blue-zodiac-500'>
-				<h2 className='text-dark dark:text-light font-poppins'>Acerca De</h2>
-			</header>
+		<div className='flex flex-col bg-light dark:bg-customBgDark rounded-md w-full min-h-48 p-4 mb-2'>
+			<h2 className='text-dark dark:text-light font-poppins'>Acerca De</h2>
+			<hr className='my-2 border border-blue-zodiac-500' />
 			<p className='text-dark dark:text-light p-1'>
 				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea modi
 				ratione magni tempora corporis, placeat dolor magnam, totam voluptatem
@@ -13,7 +12,7 @@ function About() {
 				asperiores qui, ex nesciunt dolore pariatur aut autem. Ab laudantium
 				explicabo dolores accusantium molestiae.
 			</p>
-		</article>
+		</div>
 	)
 }
 export default About

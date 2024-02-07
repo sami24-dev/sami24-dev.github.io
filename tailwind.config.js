@@ -32,7 +32,7 @@ export default {
 				dark: '#132546',
 				dark900: '#1e478a',
 				dark800: '#1e52af',
-				light: '#f4f3fa',
+				light: '#f3f9fc',
 				light100: '#dbeefe',
 				light400: '#60b8fa',
 				light500: '#3b99f6',

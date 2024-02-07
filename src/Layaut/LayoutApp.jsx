@@ -1,7 +1,7 @@
 import {Navigate, Outlet} from 'react-router-dom'
 import Sidebar from '../components/sidebar/Sidebar'
 import {useUserContext} from '../context/UserContext'
-
+import '../scroll.css'
 function LayoutApp() {
 	const {user} = useUserContext()
 

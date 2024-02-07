@@ -7,6 +7,7 @@ import Form from '../components/form/formSignUp/Form'
 import ConfigUser from '../pageViews/ConfigUser/ConfigUser'
 import NotFound from '../pageViews/NotFound/NotFound'
 import Profile from '../pageViews/Profile/Profile'
+import Publication from '../pageViews/Publication/Publication'
 export const router = createBrowserRouter([
 	{
 		path: '/',
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
 		]
 	},
 	{
+		path: '/app/configUser',
+		element: <ConfigUser />,
+		errorElement: <NotFound />
+	},
+	{
 		path: '/app',
 		element: <LayoutApp />,
 		errorElement: <NotFound />,
@@ -34,9 +40,8 @@ export const router = createBrowserRouter([
 				element: <Profile />
 			},
 			{
-				path: '/app/configUser',
-				element: <ConfigUser />,
-				errorElement: <NotFound />
+				path: 'publications',
+				element: <Publication />
 			}
 		]
 	}

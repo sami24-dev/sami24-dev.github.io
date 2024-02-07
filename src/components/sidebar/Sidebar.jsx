@@ -1,3 +1,4 @@
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {logout} from '../../firebase/app'
 import Logo from '../Logo/Logo'
@@ -16,6 +17,10 @@ function Sidebar() {
 			console.log(error)
 		}
 	}
+	const handleClick = (e) => {
+		e.preventDefault()
+	}
+
 	return (
 		<nav className='sticky z-50 top-0 w-full h-14 md:left-0 md:h-full md:w-56 bg-light dark:bg-customBgDark text-white flex md:flex-col justify-between rounded-md'>
 			<div className='md:flex justify-center items-end hidden md:h-[16%]'>
@@ -29,28 +34,52 @@ function Sidebar() {
 			</div>
 			<ul className='flex md:flex-col justify-between overflow-x-auto'>
 				<LinkSidebar
-					svg={<IconHome />}
-					content='Inicio'
+					classLink={
+						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-dark dark:text-light rounded-md md:hover:text-light md:hover:bg-light500 active:text-light500 md:active:bg-light500 transition-color duration-300 ease-in-out'
+					}
+					path={'/app'}
+					body={<IconHome />}
+					text='Inicio'
 				/>
 				<LinkSidebar
-					svg={<Publications />}
-					content='Publicaciones'
+					classLink={
+						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+					}
+					func={handleClick}
+					body={<Publications />}
+					text='Publicaciones'
 				/>
 				<LinkSidebar
-					svg={<IconChat />}
-					content='Mensajes'
+					classLink={
+						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+					}
+					func={handleClick}
+					body={<IconChat />}
+					text='Mensajes'
 				/>
 				<LinkSidebar
-					svg={<IconStore />}
-					content='Mercadeo'
+					classLink={
+						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+					}
+					func={handleClick}
+					body={<IconStore />}
+					text='Mercadeo'
 				/>
 				<LinkSidebar
-					svg={<IconFriends />}
-					content='Amigos'
+					classLink={
+						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+					}
+					func={handleClick}
+					body={<IconFriends />}
+					text='Amigos'
 				/>
 				<LinkSidebar
-					svg={<IconSettings />}
-					content='Configuracion'
+					classLink={
+						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+					}
+					func={handleClick}
+					body={<IconSettings />}
+					text='Configuracion'
 				/>
 			</ul>
 			<div>
@@ -87,4 +116,4 @@ function Sidebar() {
 	)
 }
 
-export default Sidebar
+export default React.memo(Sidebar)

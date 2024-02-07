@@ -52,9 +52,9 @@ export const logout = () => {
 
 // funcion de storage subir imagen
  
- export const uploadFile = async (base64, uid,) => {
+ export const uploadFile = async (base64, uid, rute) => {
 	try {
-		const storageRef = ref(storage, `${uid}/avatar/ProfilePhoto`)
+		const storageRef = ref(storage, `${uid}/avatar/${rute}`)
 		const message = base64
 		
 		await uploadString(storageRef, message, 'base64')
@@ -77,18 +77,8 @@ export const logout = () => {
 
 // funcion para agregar datos a la base de datos 
 
-export const setUserDb = async (email, lastName, firstName, photo, profession, id) => {
-
-	const dataDb = {
-		correo: email.toString(),
-		apellido: lastName.toString(),
-		nombre: firstName.toString(),
-		fotoPerfil: photo.toString(),
-		ocupacion: profession.toString()
-	}
-	const response = await setDoc(doc(db, 'usuarios', id), dataDb)
-	
-	return response
+export const setDbFirebase = async (dataDb, table,  id) => {
+	return await setDoc(doc(db, `${table}`, id), dataDb)
 }
 
 export const setUserPost = async (descriptions, photo, uuid, uid) => {
@@ -107,9 +97,8 @@ export const setUserPost = async (descriptions, photo, uuid, uid) => {
 
 export const getUserData = async (id) => {
 	try {
-		const docRef = doc(db, 'usuarios', id)
+		const docRef = doc(db, 'DATA-USUARIOS', id)
 		const docSnap = await getDoc(docRef)
-		console.log(docRef)
 		return docSnap.data()
 	} catch (error) {
 		console.log(error)

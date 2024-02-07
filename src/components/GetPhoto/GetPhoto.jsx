@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import {useEffect, useState} from 'react'
 // imagen
 import {toast} from 'sonner'
-import User from '../../assets/usuario.png'
+import User from '../../assets/images/usuario.png'
 import {useUserContext} from '../../context/UserContext'
 import {uploadFile} from '../../firebase/app'
 function GetPhoto({enviarDatosAlPadre}) {
@@ -31,10 +31,10 @@ function GetPhoto({enviarDatosAlPadre}) {
 		}
 	}
 	console.log(uploadAvatar)
-	// esta funcion sube la foto al servidor de firebase y me retorna la url de la foto
+	
 	const UploadPhoto = async () => {
 		try {
-			const urlPhoto = await uploadFile(uploadAvatar, uid)
+			const urlPhoto = await uploadFile(uploadAvatar, uid, 'PROFILE-PHOTO')
 			enviarDatosAlPadre(urlPhoto)
 		} catch (error) {
 			console.log(error)
@@ -71,7 +71,7 @@ function GetPhoto({enviarDatosAlPadre}) {
 				onChange={handleChangeAvatar}
 			/>
 			<p className='mt-2 text-base text-muted-foreground text-center font-poppins dark:text-customTextLight'>
-				Enter your profile photo
+				Ingresa tu foto de perfil
 			</p>
 		</div>
 	)
