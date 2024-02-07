@@ -5,6 +5,7 @@ import {router} from './Routes/Router'
 import {UserContextProvider} from './context/UserContext'
 import './index.css'
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<UserContextProvider>

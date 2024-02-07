@@ -6,8 +6,8 @@ function ConfigUser() {
 
 	return (
 		<>
-			<header className='p-2 bg-customBgDark rounded-md lg:w-[40%]'>
-				<div className='bg-light dark:bg-customBgDark rounded-md p-4'>
+			<header className='py-2 pl-2 bg-gray-900 rounded-md lg:w-[40%]'>
+				<div className='bg-light dark:bg-customBgDark rounded-md p-4 mb-2'>
 					<Logo classLogo={'text-5xl'} />
 					<h2 className='font-poppins font-medium text-dark dark;text-light text-2xl mt-2'>
 						Guía Práctica
@@ -35,8 +35,8 @@ function ConfigUser() {
 				</div>
 			</header>
 			<aside></aside>
-			<main className='flex justify-center items-center w-full bg-customBgDark py-2 rounded-md'>
-				<section className='w-1/2 h-full lg:w-full bg-light  rounded-md p-2'>
+			<main className='flex justify-center items-center w-full bg-gray-900 p-2 rounded-md'>
+				<section className='w-1/2 h-full lg:w-full bg-light dark:bg-customBgDark rounded-md p-2'>
 					<FormDataPersonal />
 				</section>
 			</main>

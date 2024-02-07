@@ -16,10 +16,10 @@ function Publications() {
 	}
 	return (
 		<>
-			<article className='flex justify-between gap-x-4 px-5 w-full py-3 rounded-md bg-light dark:bg-customBgDark mb-2'>
+			<article className='flex justify-between items-center md:justify-start gap-x-4 px-5 w-full py-3 rounded-md bg-light dark:bg-customBgDark mb-2'>
 				<Avatar
 					classContainImg={
-						'rounded-full dark:border-2 dark:border-light500 w-[48px]'
+						'rounded-full dark:border-2 dark:border-light500 w-[48px] md:w-[58px]'
 					}
 					classImg={'rounded-full bg-dark object-cover'}
 				/>

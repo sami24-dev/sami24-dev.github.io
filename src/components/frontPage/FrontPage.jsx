@@ -23,7 +23,7 @@ function FrontPage() {
 						classImg={'rounded-full bg-dark object-cover'}
 					/>
 				</div>
-				<footer className='flex flex-col justify-start items-start pl-[20%] py-2 mt-[-8%] font-poppins text-dark dark:text-light font-medium'>
+				<footer className='flex flex-col justify-start items-start pl-[20%] md:pl-[24%] py-2 mt-[-8%] md:mt-[-7%] font-poppins text-dark dark:text-light font-medium'>
 					<h2 className='capitalize'>
 						{data?.firstName} <span>{data?.lastName}</span>{' '}
 					</h2>

@@ -1,9 +1,4 @@
-.box {
-	scrollbar-color: #3b99f6 transparent;
-	scrollbar-width: none;
-}
-
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
 	width: 8px;
 }
 
@@ -20,4 +15,3 @@
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #3b99f6;
 }
- */

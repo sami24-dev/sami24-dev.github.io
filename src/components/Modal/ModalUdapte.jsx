@@ -3,7 +3,10 @@ import {useEffect, useState} from 'react'
 import {Toaster, toast} from 'sonner'
 import {useUserContext} from '../../context/UserContext'
 import {udaptePost, uploadPost} from '../../firebase/app'
+import '../../scroll.css'
 import LinkCard from '../LinkCard/LInkCard'
+import Logo from '../Logo/Logo'
+import IconImage from '../iconComponent/IconImage'
 import PencilIcon from '../iconComponent/PencilIcon'
 const Modal = (props) => {
 	// eslint-disable-next-line react/prop-types
@@ -96,89 +99,70 @@ const Modal = (props) => {
 			/>
 
 			{modalIsOpen && (
-				<section className='fixed z-50  top-0 left-0 w-full h-full flex items-center justify-center flex-col bg-black bg-opacity-50 '>
-					<article className='relative w-full  h-5/6 md:w-1/2 md:h-full overflow-auto bg-white p-8 rounded shadow-lg dark:bg-customBgDark'>
-						<div className='flex justify-end gap-2 absolute top-1 right-1'>
-							<button
-								onClick={closeModal}
-								className='h-10 p-2 text-customTextDark hover:text-customTextLight dark:text-customTextLight rounded-md font-poppins text-xl hover:bg-dark900 dark:hover:bg-customTextLight dark:hover:text-customTextDark transition-color duration-500 ease-in-out'>
-								Cancel
-							</button>
-						</div>
-						<header className='w-full h-[10%] relative flex justify-start items-center'>
-							<h3 className='absolute top-2 left-2 whitespace-nowrap text-2xl md:text-4xl text-dark900 tracking-wide font-poppins font-bold dark:text-customTextLight'>
-								Shiftnet
-							</h3>
+				<section className='fixed z-50 top-0 left-0 w-full h-full flex items-center justify-center flex-col bg-black bg-opacity-50'>
+					<article className='relative w-full h-5/6 md:w-1/2 md:h-[90%] overflow-auto bg-white p-2 rounded shadow-lg dark:bg-gray-900'>
+						<header className='flex justify-between items-center w-full bg-light dark:bg-customBgDark p-4 mb-2 rounded-md'>
+							<Logo />
+							<div className='flex items-center gap-x-5'>
+								<button
+									onClick={closeModal}
+									className='h-11 p-2 text-customTextDark hover:text-customTextLight dark:text-customTextLight rounded-md font-poppins text-xl hover:bg-dark900 dark:hover:bg-customTextLight dark:hover:text-customTextDark transition-color duration-500 ease-in-out'>
+									Cancelar
+								</button>
+								<button
+									onClick={handleSubmit}
+									className='box-border h-11 p-2 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'>
+									Confirmar
+								</button>
+							</div>
 						</header>
-						<section className='w-full h-1/2'>
-							<h2 className='text-base  font-poppins mb-4 dark:text-customTextLight'>
-								Make your content shine even more. If you want to make changes
-								or Add additional information to your post, follow these steps:
-							</h2>
-
-							<article className='w-full p-2 flex justify-between items-center gap-2'>
+						<main className='bg-light dark:bg-customBgDark p-4 rounded-md w-full'>
+							<p className='text-base  font-poppins mb-4 dark:text-customTextLight'>
+								Haz que tu contenido brille aún más. Si desea realizar cambios o
+								agregar información adicional a su publicación, siga estos
+								pasos:
+							</p>
+							<div className='flex items-center gap-x-4 text-base text-dark dark:text-light font-poppins mb-4'>
 								<label
-									className='cursor-pointer w-10 h-10 text-customTextDark dark:text-customTextLight'
-									htmlFor='inputModal'>
-									<svg
-										xmlns='http://www.w3.org/2000/svg'
-										width='38'
-										height='38'
-										viewBox='0 0 24 24'
-										fill='none'
-										stroke='currentColor'
-										strokeWidth='2'
-										strokeLinecap='round'
-										strokeLinejoin='round'>
-										<rect
-											width='20'
-											height='20'
-											x='3'
-											y='3'
-											rx='2'
-											ry='2'
-										/>
-										<circle
-											cx='9'
-											cy='9'
-											r='2'
-										/>
-										<path d='m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21' />
-									</svg>
+									className='flex cursor-pointer w-10 h-10 text-customTextDark dark:text-customTextLight'
+									htmlFor='inputFile'>
+									<IconImage />
 								</label>
-								<textarea
-									className='appearance-none w-3/4 h-11 p-2 text-base  resize-none text-customTextDark font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark capitalize focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:text-customTextLight dark:focus:bg-customBgDark'
-									type='text'
-									value={updateDescriptions}
-									name='updateDescriptions'
-									onChange={handleChange}
-								/>
+								<span>Actualizar Imagen</span>
 								<input
 									className='hidden'
 									accept='image/*'
 									type='file'
 									name=''
-									id='inputModal'
+									id='inputFile'
 									onChange={handleImage}
 								/>
-								<button
-									onClick={handleSubmit}
-									className='box-border h-11 p-2 text-light font-poppins text-xl bg-dark900 transition-color duration-500 ease-in-out rounded-md hover:bg-dark active:bg-dark dark:bg-blue-zodiac-800'>
-									Confirm
-								</button>
-							</article>
-							<img
-								className='rounded-md object-cover'
-								src={previewImage}
+							</div>
+							<div className='w-full flex justify-center items-start gap-2'>
+								<textarea
+									className='w-1/2 h-full p-2 text-base resize-none text-dark dark:text-light  font-poppins rounded-md outline-none border border-customBorderLight transition-colors duration-500 ease-in-out  hover:border-customBorderDark capitalize focus:border-customBorderDark dark:border-opacity-5 dark:!bg-customBgDark dark:hover:border-blue-zodiac-900 dark:focus:bg-customBgDark'
+									type='text'
+									value={updateDescriptions}
+									name='updateDescriptions'
+									onChange={handleChange}
+								/>
+								<div className='w-1/2'>
+									<img
+										className='rounded-md object-cover'
+										src={previewImage}
+									/>
+								</div>
+							</div>
+						</main>
+						<footer className='flex justify-end gap-2 absolute top-1 right-1'>
+							<Toaster
+								richColors
+								position='top-right'
+								expand={true}
+								closeButton={true}
 							/>
-						</section>
+						</footer>
 					</article>
-					<Toaster
-						richColors
-						position='top-right'
-						expand={true}
-						closeButton={true}
-					/>
 				</section>
 			)}
 		</div>

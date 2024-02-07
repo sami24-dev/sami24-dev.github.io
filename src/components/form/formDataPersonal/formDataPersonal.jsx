@@ -51,7 +51,7 @@ function formDataPersonal() {
 	}
 	return (
 		<form
-			className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 border-2 border-light-500 p-2'
+			className='flex justify-center items-center rounded-md flex-col gap-3 w-4/5 md:w-96 p-2'
 			onSubmit={handleSubmit}>
 			<GetPhoto enviarDatosAlPadre={getDataPhoto} />
 			<FormInput

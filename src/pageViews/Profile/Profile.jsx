@@ -13,7 +13,7 @@ function Profile() {
 	const {post, fechtData} = useDataPost()
 	return (
 		<>
-			<main className='lg:flex flex-col lg:w-full lg:h-screen rounded-md  px-2 md:px-0 lg:px-0 lg:py-2'>
+			<main className='lg:flex flex-col lg:w-full lg:h-screen rounded-md px-2 md:px-0 lg:px-0 lg:py-2'>
 				<section className='box md:overflow-y-scroll'>
 					<FrontPage />
 					<Publications />
@@ -35,7 +35,7 @@ function Profile() {
 						)}
 				</section>
 			</main>
-			<aside className='bg-customBgDark dark:bg-gray-900 hidden md:block p-2'>
+			<aside className='bg-customBgDark dark:bg-gray-900 hidden md:block pr-2 py-2'>
 				<Panel />
 			</aside>
 		</>
