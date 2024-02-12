@@ -6,8 +6,8 @@ function ConfigUser() {
 
 	return (
 		<>
-			<header className='py-2 pl-2 bg-gray-900 rounded-md lg:w-[40%]'>
-				<div className='bg-light dark:bg-customBgDark rounded-md p-4 mb-2'>
+			<header className='py-2 pl-2 bg-gray-900 rounded-md lg:w-[40%] '>
+				<div className='bg-light dark:bg-customBgDark rounded-md p-4 mb-2 lg:h-full'>
 					<Logo classLogo={'text-5xl'} />
 					<h2 className='font-poppins font-medium text-dark dark;text-light text-2xl mt-2'>
 						Guía Práctica

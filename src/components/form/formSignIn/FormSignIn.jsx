@@ -6,12 +6,10 @@ import {useUserContext} from '../../../context/UserContext'
 // image-SVG
 import look from '../../../assets/form/cerrar.svg'
 import en from '../../../assets/form/en.svg'
-import google from '../../../assets/form/Google-Logo.png'
 // metodo-signInWithEmailAndPassword-firebase
 import {login} from '../../../firebase/app'
 // components
 import {toast, Toaster} from 'sonner'
-import ButtonForm from '../formSignUp/ButtonForm'
 import FooterForm from '../formSignUp/FooterForm'
 import FormInput from '../formSignUp/FormInput'
 
@@ -68,10 +66,6 @@ function Form() {
 				<h3 className='my-5 text-2xl text-dark900 font-poppins dark:text-customTextLight'>
 					Cuenta de Ingreso
 				</h3>
-				<ButtonForm
-					icon={google}
-					content='iniciar sesión con Google'
-				/>
 			</header>
 			<FormInput
 				type='email'
