@@ -8,7 +8,7 @@ import LinkCard from '../LinkCard/LInkCard'
 import Logo from '../Logo/Logo'
 import IconImage from '../iconComponent/IconImage'
 import PencilIcon from '../iconComponent/PencilIcon'
-const Modal = (props) => {
+const ModalUdapte = (props) => {
 	// eslint-disable-next-line react/prop-types
 	const {date, udapte} = props
 	const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -168,8 +168,8 @@ const Modal = (props) => {
 		</div>
 	)
 }
-Modal.propTypes = {
+ModalUdapte.propTypes = {
 	date: PropTypes.object.isRequired,
 	udapte: PropTypes.func.isRequired
 }
-export default Modal
+export default ModalUdapte

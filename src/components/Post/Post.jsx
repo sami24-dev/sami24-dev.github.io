@@ -11,7 +11,6 @@ import {v4 as uuidv4} from 'uuid'
 import IconImage from '../iconComponent/IconImage'
 // eslint-disable-next-line react/prop-types
 function Post({open, close}) {
-	console.log(open)
 	// estados
 	const [post, setPost] = useState({
 		descriptions: '',
@@ -86,12 +85,13 @@ function Post({open, close}) {
 			const res = await setUserPost(descriptions, urlLink, uuidv4(), uid)
 			console.log(res)
 			setPost({...post, descriptions: ''})
-			close()
 			open()
+			close()
 		} catch (error) {
 			console.log(error)
 		}
 	}
+
 	return (
 		<article className='w-full h-full p-10'>
 			<header className=''>
@@ -109,7 +109,7 @@ function Post({open, close}) {
 					onChange={handleImage}
 				/>
 			</header>
-			<main className='flex mt-5'>
+			<main className='flex flex-col lg:flex-row mt-5'>
 				<textarea
 					className='box w-full h-12 md:h-auto p-2 bg-transparent  rounded-md resize-none outline-none text-customTextDark font-poppins  dark:text-customTextLight'
 					placeholder='¿Sobre que deseas hablar?'

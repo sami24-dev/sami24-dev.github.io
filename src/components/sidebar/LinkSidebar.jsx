@@ -2,7 +2,6 @@
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 function LinkSidebar({classLink, path, func, body, text}) {
-	
 	return (
 		<li>
 			<Link
@@ -10,7 +9,7 @@ function LinkSidebar({classLink, path, func, body, text}) {
 				to={path}
 				onClick={func}>
 				{body}
-				<span className='ml-4 md:block hidden'>{text}</span>
+				<span className='ml-4 lg:block hidden'>{text}</span>
 			</Link>
 		</li>
 	)

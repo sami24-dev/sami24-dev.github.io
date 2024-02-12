@@ -1,0 +1,4 @@
+.parrafo {
+    max-width: 300px; /* ajusta el ancho máximo según tus necesidades */
+    overflow-wrap: break-word;
+}

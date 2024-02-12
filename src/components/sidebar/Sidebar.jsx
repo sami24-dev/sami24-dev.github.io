@@ -22,20 +22,14 @@ function Sidebar() {
 	}
 
 	return (
-		<nav className='sticky z-50 top-0 w-full h-14 md:left-0 md:h-full md:w-56 bg-light dark:bg-customBgDark text-white flex md:flex-col justify-between rounded-md'>
-			<div className='md:flex justify-center items-end hidden md:h-[16%]'>
-				{/* <ImageAvatar
-					classContain={'p-2 w-20 '}
-					classImg={
-						'w-full shadow-md p-1 rounded-full w-10 h-10 md:w-14 md:h-14 aspect-square object-cover bg-dark '
-					}
-				/> */}
+		<nav className='sticky z-50 top-0 w-full h-14 lg:left-0 lg:h-full lg:w-56 bg-light dark:bg-customBgDark text-white flex lg:flex-col justify-between items-center rounded-md'>
+			<div className='lg:flex justify-center items-end pl-5 lg:pl-0 lg:h-[16%] hidden md:block'>
 				<Logo />
 			</div>
-			<ul className='flex md:flex-col justify-between overflow-x-auto'>
+			<ul className='flex lg:flex-col justify-between items-center lg:items-start overflow-x-auto'>
 				<LinkSidebar
 					classLink={
-						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-dark dark:text-light rounded-md md:hover:text-light md:hover:bg-light500 active:text-light500 md:active:bg-light500 transition-color duration-300 ease-in-out'
+						'flex items-center p-4 lg:p-3 lg:p-4 lg:mb-1 font-poppins text-xl text-dark dark:text-light rounded-md lg:hover:text-light lg:hover:bg-light500 active:text-light500 lg:active:bg-light500 transition-color duration-300 ease-in-out'
 					}
 					path={'/app'}
 					body={<IconHome />}
@@ -43,7 +37,7 @@ function Sidebar() {
 				/>
 				<LinkSidebar
 					classLink={
-						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+						'flex items-center p-4 lg:p-3 lg:p-4 lg:lg:mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
 					}
 					func={handleClick}
 					body={<Publications />}
@@ -51,7 +45,7 @@ function Sidebar() {
 				/>
 				<LinkSidebar
 					classLink={
-						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+						'flex items-center p-4 lg:p-3 lg:p-4 lg:mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
 					}
 					func={handleClick}
 					body={<IconChat />}
@@ -59,7 +53,7 @@ function Sidebar() {
 				/>
 				<LinkSidebar
 					classLink={
-						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+						'flex items-center p-4 lg:p-3 lg:p-4 lg:mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
 					}
 					func={handleClick}
 					body={<IconStore />}
@@ -67,7 +61,7 @@ function Sidebar() {
 				/>
 				<LinkSidebar
 					classLink={
-						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+						'flex items-center p-4 lg:p-3 lg:p-4 lg:mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
 					}
 					func={handleClick}
 					body={<IconFriends />}
@@ -75,7 +69,7 @@ function Sidebar() {
 				/>
 				<LinkSidebar
 					classLink={
-						'flex items-center p-4 md:p-3 lg:p-4 mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
+						'flex items-center p-4 lg:p-3 lg:p-4 lg:mb-1 font-poppins text-xl text-gray-300 dark:text-gray-700 rounded-md'
 					}
 					func={handleClick}
 					body={<IconSettings />}
@@ -85,7 +79,7 @@ function Sidebar() {
 			<div>
 				<Link
 					onClick={handleLogaut}
-					className='flex items-center p-4 mb-1 font-poppins text-xl text-dark dark:text-light rounded-md md:hover:text-light md:hover:bg-light500 active:bg-light500 transition-color duration-300 ease-in-out'
+					className='flex items-center p-4 mb-1 font-poppins text-xl text-dark dark:text-light rounded-md lg:hover:text-light lg:hover:bg-light500 active:bg-light500 transition-color duration-300 ease-in-out'
 					href='#'>
 					<svg
 						className='w-6 h-6'
@@ -107,7 +101,7 @@ function Sidebar() {
 							y2='12'
 						/>
 					</svg>
-					<span className='ml-4 md:block hidden text-nowrap'>
+					<span className='ml-4 lg:block hidden text-nowrap'>
 						Cerrar Seccion
 					</span>
 				</Link>
