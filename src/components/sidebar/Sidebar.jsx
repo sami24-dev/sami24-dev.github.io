@@ -26,7 +26,7 @@ function Sidebar() {
 			<div className='lg:flex justify-center items-end pl-5 lg:pl-0 lg:h-[16%] hidden md:block'>
 				<Logo />
 			</div>
-			<ul className='flex lg:flex-col justify-between items-center lg:items-start overflow-x-auto'>
+			<ul className='flex lg:flex-col justify-between items-center lg:items-start'>
 				<LinkSidebar
 					classLink={
 						'flex items-center p-4 lg:p-3 lg:p-4 lg:mb-1 font-poppins text-xl text-dark dark:text-light rounded-md lg:hover:text-light lg:hover:bg-light500 active:text-light500 lg:active:bg-light500 transition-color duration-300 ease-in-out'

@@ -7,7 +7,7 @@ function ImgAvatar({classContainImg}) {
 	return (
 		<div className={`${classContainImg}`}>
 			<img
-				className='rounded-full bg-dark object-cover'
+				className='rounded-full bg-dark object-cover w-[58px] h-[58px]'
 				src={data?.urlAvatar ? data?.urlAvatar : imageUser}
 			/>
 		</div>
