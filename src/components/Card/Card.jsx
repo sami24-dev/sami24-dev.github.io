@@ -21,7 +21,7 @@ function Card({param, open}) {
 			console.log(error)
 		}
 	}
-	function renderizarUsuario() {
+	function renderizarFoto() {
 		if (param.foto === 'false') {
 			return ''
 		} else {
@@ -65,11 +65,11 @@ function Card({param, open}) {
 			</header>
 			<main className=''>
 				<div className='flex justify-start items-center px-4 '>
-					<span className='my-4 text-xl text-customTextDark dark:text-customTextLight break-words lg:max-w-[650px]'>
+					<span className='my-4 text-xl text-customTextDark dark:text-customTextLight break-words max-wFoto] lg:max-w-[650px]'>
 						{param.descripcion}
 					</span>
 				</div>
-				{renderizarUsuario()}
+				{renderizarFoto()}
 			</main>
 			<footer className='md:flex-shrink-0 md:h-full '></footer>
 		</>
