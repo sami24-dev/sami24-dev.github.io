@@ -65,7 +65,7 @@ function Card({param, open}) {
 			</header>
 			<main className=''>
 				<div className='flex justify-start items-center px-4 '>
-					<span className='my-4 text-xl text-customTextDark dark:text-customTextLight break-words max-wFoto] lg:max-w-[650px]'>
+					<span className='my-4 text-xl text-customTextDark dark:text-customTextLight break-words max-w-[300px] lg:max-w-[650px]'>
 						{param.descripcion}
 					</span>
 				</div>
